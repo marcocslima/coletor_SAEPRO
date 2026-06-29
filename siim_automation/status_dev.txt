@@ -1,0 +1,79 @@
+STATUS DO DESENVOLVIMENTO — Automação SIIM
+============================================
+Data: 29/06/2026
+Branch: dev
+Último commit: fd742b4 - "Otimiza upload Drive: cria subpasta única por projeto,
+  suporta Shared Drives e aba config de documentos"
+Remote: https://github.com/marcocslima/coletor_SAEPRO
+
+
+ARQUIVOS DO PROJETO
+-------------------
+siim_download_projetos.py  - Script principal da automação (Playwright)
+sheet_reader.py            - Leitura de projetos/documentos via Google Sheets
+drive_uploader.py          - Upload dos PDFs para o Google Drive
+diagnostic_dom.py          - Script auxiliar para diagnóstico do DOM
+.env.example               - Modelo das variáveis de ambiente
+README.md                  - Documentação do projeto
+README_WINDOWS.md          - Documentação específica para Windows
+
+
+FUNCIONALIDADES IMPLEMENTADAS
+-----------------------------
+[OK] Login no SIIM com credenciais do .env
+[OK] Tratamento do alerta de troca de senha ("continuar sem trocar")
+[OK] Entrada no módulo SAEPRO
+[OK] Consulta de projetos via campo de busca
+[OK] Abertura da primeira linha dos resultados pelo ícone de edição/lápis
+[OK] Navegação até Documentos da análise (via Angular AbrirDocumentosProjeto())
+[OK] Leitura da lista de projetos via Google Sheets (sheet_reader.py)
+[OK] Leitura de tipos de documento via aba "config" da planilha (sheet_reader.py)
+[OK] Download de múltiplos documentos por projeto (não só PROJETO SIMPLIFICADO)
+[OK] Upload dos PDFs para o Google Drive com organização em subpastas por projeto
+[OK] Suporte a Shared Drives no Google Drive (supportsAllDrives + includeItemsFromAllDrives)
+[OK] Remoção do arquivo local após upload bem-sucedido
+[OK] Screenshot de erro em caso de falha
+
+
+FLUXO COMPLETO TESTADO (29/06/2026)
+------------------------------------
+Projetos testados: SAEPRO2025/1968, SAEPRO2025/777
+Documentos baixados por projeto: PROJETO SIMPLIFICADO, ART/RRT/TRT,
+  MEMORIAL DESCRITIVO, LAUDO TÉCNICO
+Resultado: Todos os 8 downloads (4 por projeto) foram bem-sucedidos,
+  com upload ao Drive e remoção local corretos.
+
+Estrutura no Drive (correta):
+  Drive/
+  ├── SAEPRO2025_1968/
+  │   ├── PROJETO_SIMPLIFICADO.pdf
+  │   ├── ART_RRT_TRT.pdf
+  │   ├── MEMORIAL_DESCRITIVO.pdf
+  │   └── LAUDO_T_CNICO.pdf
+  └── SAEPRO2025_777/
+      ├── PROJETO_SIMPLIFICADO.pdf
+      ├── ART_RRT_TRT.pdf
+      ├── MEMORIAL_DESCRITIVO.pdf
+      └── LAUDO_T_CNICO.pdf
+
+
+LIMITAÇÕES / PONTOS DE ATENÇÃO
+-------------------------------
+- Se o SIIM solicitar CAPTCHA ou troca obrigatória de senha sem opção de
+  continuar, a automação não consegue prosseguir sem intervenção manual.
+- Seletores dependem da estrutura atual do SIIM (tabelas, ícones, texto das
+  linhas). Se a interface mudar, pode ser necessário ajustar seletores em
+  go_to_fiscalizacao_documentos() e download_document().
+- O Chrome for Testing bundled do Playwright é usado por padrão. Pode ser
+  sobrescrito via CHROME_PATH no .env.
+- HEADLESS=true executa sem abrir janela; HEADLESS=false mostra o navegador.
+
+
+PRÓXIMOS PASSOS SUGERIDOS
+--------------------------
+- [ ] Melhorar logging: salvar log em arquivo além do terminal
+- [ ] Tratar erro "projeto não encontrado" com mais robustez (já tem recarga)
+- [ ] Adicionar suporte a download de documentos anexados (não só PDF direto)
+- [ ] Paralelizar download de projetos para ganhar performance
+- [ ] Adicionar timeout configurável por documento
+- [ ] Atualizar README.md com as novas funcionalidades (múltiplos docs, aba config)
