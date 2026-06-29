@@ -1,2 +1,4 @@
 playwright>=1.60.0
 python-dotenv>=1.2.2
+gspread>=6.0
+google-auth>=2.0

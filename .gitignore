@@ -6,6 +6,10 @@ env/
 # Environment variables with secrets
 .env
 
+# Google service account credentials
+credentials/*.json
+siim_automation/credentials/*.json
+
 # Python bytecode
 __pycache__/
 *.pyc

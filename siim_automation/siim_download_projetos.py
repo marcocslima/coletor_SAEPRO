@@ -34,6 +34,8 @@ from playwright.async_api import (
     async_playwright,
 )
 
+import sheet_reader
+
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
 
@@ -55,7 +57,25 @@ if not CHROME_PATH:
         if "/tmp/opencode/extracted_libs/usr/lib/x86_64-linux-gnu" not in lib_paths:
             os.environ["LD_LIBRARY_PATH"] = "/tmp/opencode/extracted_libs/usr/lib/x86_64-linux-gnu:" + lib_paths
         print(f"INFO: Usando Chrome for Testing detectado em: {CHROME_PATH}")
-PROJECTS = [p.strip() for p in os.getenv("PROJECTS", "SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884").split(",") if p.strip()]
+GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID", "").strip()
+GOOGLE_SHEET_CREDENTIALS = os.getenv("GOOGLE_SHEET_CREDENTIALS", "").strip()
+
+PROJECTS: list[str] = []
+if GOOGLE_SHEET_ID and GOOGLE_SHEET_CREDENTIALS:
+    creds_path = Path(GOOGLE_SHEET_CREDENTIALS)
+    if not creds_path.is_absolute():
+        creds_path = BASE_DIR / creds_path
+    if not creds_path.exists():
+        print(f"ERRO: Arquivo de credenciais Google nao encontrado: {creds_path}")
+        PROJECTS = []
+    else:
+        try:
+            PROJECTS = sheet_reader.get_projects(GOOGLE_SHEET_ID, creds_path)
+        except Exception as e:
+            print(f"ERRO ao ler planilha Google: {e}")
+            PROJECTS = []
+else:
+    PROJECTS = [p.strip() for p in os.getenv("PROJECTS", "SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884").split(",") if p.strip()]
 
 LOGIN_TIMEOUT = 45_000
 PAGE_TIMEOUT = 45_000
@@ -77,6 +97,11 @@ def require_env() -> None:
         missing.append("SIIM_PASSWORD")
     if missing:
         raise RuntimeError(f"Variáveis ausentes no .env: {', '.join(missing)}")
+    if not PROJECTS:
+        raise RuntimeError(
+            "Nenhum projeto configurado. Defina PROJECTS no .env "
+            "ou configure GOOGLE_SHEET_ID + GOOGLE_SHEET_CREDENTIALS."
+        )
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
