@@ -222,12 +222,47 @@ PROJECTS=SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884
 | `HEADLESS` | Mostrar navegador? | false (true para rodar silenciosamente) |
 | `PROJECTS` | Projetos a baixar | SAEPRO2025/6485,SAEPRO2025/6865 |
 | `CHROME_PATH` | Chrome do sistema (opcional) | Caminho do chrome.exe |
+| `GOOGLE_SHEET_ID` | ID da planilha (opcional) | 1abc123xxx... |
+| `GOOGLE_SHEET_CREDENTIALS` | Caminho do JSON da service account (opcional) | credentials/google-sheets.json |
 
 ### Passo 3: Salvar o arquivo
 
 Apos editar, salve o arquivo (Ctrl + S).
 
 **SEGURANCA**: O arquivo `.env` contem suas credenciais. **Nunca o compartilhe ou envie para repositorios publicos!**
+
+---
+
+## Integracao com Google Sheets (opcional)
+
+Ao inves de editar `PROJECTS` manualmente, voce pode buscar a lista de projetos de uma planilha do Google Sheets.
+
+### Passo a passo
+
+1. **Crie uma Service Account** no [Google Cloud Console](https://console.cloud.google.com):
+   - Crie um projeto e ative a **Google Sheets API**
+   - Vá em "APIs e Servicos" > "Credenciais" > "Criar credenciais" > "Conta de servico"
+   - Apos criar, clique em "Gerenciar chaves" > "Adicionar chave" > "JSON"
+   - Salve o arquivo baixado em `siim_automation\credentials\google-sheets.json`
+
+2. **Compartilhe a planilha** com o e-mail da service account (funcao "Leitor")
+
+3. **Configure o `.env`**:
+
+   ```env
+   GOOGLE_SHEET_CREDENTIALS=credentials\google-sheets.json
+   GOOGLE_SHEET_ID=1abc123xxx...
+   ```
+
+4. **Estrutura da planilha**: os projetos devem estar na **coluna A**, um por linha, a partir da **linha 2**:
+
+   ```
+   A1: Projetos (cabecalho, ignorado)
+   A2: SAEPRO2025/6485
+   A3: SAEPRO2025/6865
+   ```
+
+Quando `GOOGLE_SHEET_ID` estiver configurado, o script ignora `PROJECTS` do `.env` e usa a lista da planilha.
 
 ---
 
@@ -457,6 +492,7 @@ python siim_download_projetos.py
 
 ## Historico de Versoes
 
+- **v1.2** (Junho 2026): Adicionada integracao com Google Sheets (`sheet_reader.py`)
 - **v1.1** (Junho 2026): Guia atualizado para GitHub, requirements.txt, nome do venv padrao `.venv`
 - **v1.0** (Junho 2026): Guia inicial para Windows 11
 
