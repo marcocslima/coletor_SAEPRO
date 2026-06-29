@@ -60,6 +60,7 @@ if not CHROME_PATH:
         print(f"INFO: Usando Chrome for Testing detectado em: {CHROME_PATH}")
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID", "").strip()
 GOOGLE_SHEET_CREDENTIALS = os.getenv("GOOGLE_SHEET_CREDENTIALS", "").strip()
+GOOGLE_SHEET_CONFIG_TAB = os.getenv("GOOGLE_SHEET_CONFIG_TAB", "config").strip()
 GOOGLE_DRIVE_FOLDER_ID = os.getenv("GOOGLE_DRIVE_FOLDER_ID", "").strip()
 
 PROJECTS: list[str] = []
@@ -78,6 +79,21 @@ if GOOGLE_SHEET_ID and GOOGLE_SHEET_CREDENTIALS:
             PROJECTS = []
 else:
     PROJECTS = [p.strip() for p in os.getenv("PROJECTS", "SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884").split(",") if p.strip()]
+
+DOCUMENT_TYPES: list[str] = []
+if GOOGLE_SHEET_ID and GOOGLE_SHEET_CREDENTIALS:
+    creds_path = Path(GOOGLE_SHEET_CREDENTIALS)
+    if not creds_path.is_absolute():
+        creds_path = BASE_DIR / creds_path
+    if creds_path.exists():
+        try:
+            DOCUMENT_TYPES = sheet_reader.get_document_types(
+                GOOGLE_SHEET_ID, creds_path, GOOGLE_SHEET_CONFIG_TAB
+            )
+        except Exception as e:
+            print(f"ERRO ao ler configuração de documentos da planilha: {e}")
+if not DOCUMENT_TYPES:
+    DOCUMENT_TYPES = ["PROJETO SIMPLIFICADO"]
 
 LOGIN_TIMEOUT = 45_000
 PAGE_TIMEOUT = 45_000
@@ -104,11 +120,25 @@ def require_env() -> None:
             "Nenhum projeto configurado. Defina PROJECTS no .env "
             "ou configure GOOGLE_SHEET_ID + GOOGLE_SHEET_CREDENTIALS."
         )
+    if not DOCUMENT_TYPES:
+        raise RuntimeError(
+            "Nenhum tipo de documento configurado. Adicione a aba 'config' na planilha "
+            "com os documentos desejados, ou o padrao 'PROJETO SIMPLIFICADO' sera usado."
+        )
     DOWNLOAD_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def safe_project_name(project: str) -> str:
     return re.sub(r"[^A-Za-z0-9_.-]+", "_", project).strip("_")
+
+
+def _resolve_creds_path() -> Optional[Path]:
+    if not GOOGLE_SHEET_CREDENTIALS:
+        return None
+    p = Path(GOOGLE_SHEET_CREDENTIALS)
+    if not p.is_absolute():
+        p = BASE_DIR / p
+    return p if p.exists() else None
 
 
 async def wait_ready(page: Page, timeout: int = PAGE_TIMEOUT) -> None:
@@ -479,11 +509,10 @@ async def go_to_fiscalizacao_documentos(page: Page, project: str) -> None:
 
     # Aguarda conteúdo da página de Documentos aparecer
     for doc_content_sel in [
-        "text=PROJETO SIMPLIFICADO",
-        "text=Documentos obrigatórios",
         "table.table-striped tbody tr",
         "table tbody tr",
         "tbody",
+        "text=Documentos obrigatórios",
     ]:
         try:
             await page.locator(doc_content_sel).first.wait_for(timeout=20_000)
@@ -493,72 +522,64 @@ async def go_to_fiscalizacao_documentos(page: Page, project: str) -> None:
             continue
 
 
-async def save_download(download: Download, project: str) -> Path:
-    suggested = download.suggested_filename or "PROJETO_SIMPLIFICADO.pdf"
+async def list_available_documents(page: Page) -> list[str]:
+    try:
+        all_rows = await page.locator("table tbody tr").all_text_contents()
+        doc_names = [re.sub(r"\s+", " ", r).strip() for r in all_rows if r.strip()]
+        if doc_names:
+            logger.info("Documentos encontrados na aba (%d): %s", len(doc_names), doc_names)
+        else:
+            logger.warning("Nenhuma linha de documento encontrada na tabela.")
+        return doc_names
+    except PlaywrightError:
+        return []
+
+
+async def save_download(download: Download, project: str, doc_name: str) -> Path:
+    safe_doc = safe_project_name(doc_name)
+    suggested = download.suggested_filename or f"{safe_doc}.pdf"
     ext = Path(suggested).suffix or ".pdf"
-    target = DOWNLOAD_DIR / f"{safe_project_name(project)}_PROJETO_SIMPLIFICADO{ext}"
+    target = DOWNLOAD_DIR / f"{safe_project_name(project)}_{safe_doc}{ext}"
     await download.save_as(str(target))
     logger.info("Arquivo salvo: %s", target)
     return target
 
 
-async def download_projeto_simplificado(page: Page, context: BrowserContext, project: str) -> Optional[Path]:
-    logger.info("Localizando linha 'PROJETO SIMPLIFICADO'.")
+async def download_document(page: Page, context: BrowserContext, project: str, doc_name: str) -> Optional[Path]:
+    logger.info("Localizando linha '%s'.", doc_name)
 
-    # Diagnóstico: lista todos os documentos visíveis na aba antes de tentar localizar a linha
-    try:
-        all_rows = await page.locator("table tbody tr").all_text_contents()
-        doc_names = [r.strip()[:80] for r in all_rows if r.strip()]
-        if doc_names:
-            logger.info("Documentos encontrados na aba (%d): %s", len(doc_names), doc_names)
-        else:
-            logger.warning("Nenhuma linha de documento encontrada na tabela. A aba pode não ter carregado.")
-            # Tira screenshot diagnóstico
-            diag = DOWNLOAD_DIR / f"diag_{safe_project_name(project)}_aba_docs.png"
-            await page.screenshot(path=str(diag), full_page=True)
-            logger.warning("Screenshot diagnóstico salvo: %s", diag)
-    except PlaywrightError:
-        pass
-
-    # Tenta localizar a linha com texto "PROJETO SIMPLIFICADO" (case-insensitive via regex)
-    row = page.locator("tr", has_text=re.compile("PROJETO SIMPLIFICADO", re.I)).first
+    row = page.locator("tr", has_text=re.compile(re.escape(doc_name), re.I)).first
     try:
         await row.wait_for(timeout=PAGE_TIMEOUT)
     except PlaywrightTimeoutError:
-        # Fallback: tenta localizar por texto parcial em qualquer célula
-        row = page.locator("td", has_text=re.compile("PROJETO SIMPLIFICADO", re.I)).first
+        row = page.locator("td", has_text=re.compile(re.escape(doc_name), re.I)).first
         await row.wait_for(timeout=10_000)
-        # Sobe para a linha pai
         row = row.locator("xpath=ancestor::tr[1]")
 
-    # O clique no ícone de download da linha pode gerar um download direto ou abrir uma nova aba com PDF.
     download_icon = row.locator("i.fa-download, .fa-download, [title*='Download' i], a[href*='arquivo'], a:has(i), button:has(i)").first
     if await download_icon.count() == 0:
         links = row.locator("a, button")
         count = await links.count()
         if count == 0:
-            raise RuntimeError("Linha PROJETO SIMPLIFICADO encontrada, mas sem botão/link de download.")
-        # Pela tela de referência, o download costuma ser o segundo/terceiro ícone da área de ações.
+            raise RuntimeError(f"Linha '{doc_name}' encontrada, mas sem botão/link de download.")
         download_icon = links.nth(min(1, count - 1))
 
-    logger.info("Clicando no ícone de download do documento.")
+    logger.info("Clicando no ícone de download do documento '%s'.", doc_name)
 
     try:
         async with page.expect_download(timeout=12_000) as download_info:
             await download_icon.click(timeout=ACTION_TIMEOUT)
-        return await save_download(await download_info.value, project)
+        return await save_download(await download_info.value, project, doc_name)
     except PlaywrightTimeoutError:
         logger.info("Não houve download direto; verificando abertura de aba com PDF.")
 
     pdf_page: Optional[Page] = None
     try:
         async with context.expect_page(timeout=12_000) as new_page_info:
-            # Se o clique anterior não abriu por timeout, faz mais um clique controlado.
             await download_icon.click(timeout=ACTION_TIMEOUT)
         pdf_page = await new_page_info.value
         await wait_ready(pdf_page)
     except PlaywrightTimeoutError:
-        # Às vezes o PDF abre na mesma página.
         pdf_page = page
 
     logger.info("Tentando baixar PDF pelo visualizador/URL.")
@@ -576,17 +597,16 @@ async def download_projeto_simplificado(page: Page, context: BrowserContext, pro
                 timeout=8_000,
             )
             if not clicked:
-                # Atalho comum do visualizador PDF do Chrome.
                 await pdf_page.keyboard.press("Control+S")
-        saved = await save_download(await download_info.value, project)
+        saved = await save_download(await download_info.value, project, doc_name)
     except PlaywrightTimeoutError:
-        # Fallback: se a URL atual é um PDF/arquivo autenticado, baixa com o contexto da sessão.
         pdf_url = pdf_page.url
         logger.info("Download pelo visualizador não disparou; tentando obter conteúdo pela URL autenticada.")
         response = await context.request.get(pdf_url, timeout=PAGE_TIMEOUT)
         if not response.ok:
             raise RuntimeError(f"Falha ao baixar PDF pela URL: HTTP {response.status}")
-        target = DOWNLOAD_DIR / f"{safe_project_name(project)}_PROJETO_SIMPLIFICADO.pdf"
+        safe_doc = safe_project_name(doc_name)
+        target = DOWNLOAD_DIR / f"{safe_project_name(project)}_{safe_doc}.pdf"
         target.write_bytes(await response.body())
         logger.info("Arquivo salvo por requisição autenticada: %s", target)
         saved = target
@@ -600,17 +620,43 @@ async def process_project(page: Page, context: BrowserContext, project: str) -> 
     try:
         await open_project_from_search(page, project)
         await go_to_fiscalizacao_documentos(page, project)
-        saved = await download_projeto_simplificado(page, context, project)
 
-        if GOOGLE_DRIVE_FOLDER_ID and GOOGLE_SHEET_CREDENTIALS:
-            creds_path = Path(GOOGLE_SHEET_CREDENTIALS)
-            if not creds_path.is_absolute():
-                creds_path = BASE_DIR / creds_path
-            drive_uploader.upload_pdf(
-                saved, GOOGLE_DRIVE_FOLDER_ID, creds_path, delete_local=True
+        available = await list_available_documents(page)
+        if not available:
+            logger.warning("Nenhum documento encontrado na aba do projeto %s.", project)
+            return
+
+        creds_path = _resolve_creds_path()
+        project_folder_id: Optional[str] = None
+        if GOOGLE_DRIVE_FOLDER_ID and creds_path:
+            svc = drive_uploader.get_service(creds_path)
+            project_folder_id = drive_uploader.resolve_or_create_folder(
+                svc, safe_project_name(project), GOOGLE_DRIVE_FOLDER_ID
             )
 
-        logger.info("Projeto %s concluído. PDF: %s", project, saved)
+        for doc_name in DOCUMENT_TYPES:
+            matched = any(doc_name.upper() in avail.upper() for avail in available)
+            if not matched:
+                logger.warning(
+                    "Documento '%s' nao encontrado no projeto %s. Disponiveis: %s",
+                    doc_name, project, [a[:40] for a in available],
+                )
+                continue
+
+            saved = await download_document(page, context, project, doc_name)
+
+            if GOOGLE_DRIVE_FOLDER_ID and creds_path:
+                drive_uploader.upload_pdf(
+                    saved,
+                    GOOGLE_DRIVE_FOLDER_ID,
+                    creds_path,
+                    project_folder_id=project_folder_id,
+                    delete_local=True,
+                )
+
+            logger.info("Documento '%s' do projeto %s concluido.", doc_name, project)
+
+        logger.info("Projeto %s totalmente processado.", project)
     except Exception as exc:
         logger.exception("Erro ao processar projeto %s: %s", project, exc)
         screenshot = DOWNLOAD_DIR / f"erro_{safe_project_name(project)}.png"
@@ -624,6 +670,7 @@ async def process_project(page: Page, context: BrowserContext, project: str) -> 
 async def run() -> None:
     require_env()
     logger.info("Projetos configurados: %s", ", ".join(PROJECTS))
+    logger.info("Documentos a baixar: %s", ", ".join(DOCUMENT_TYPES))
     logger.info("Pasta de downloads: %s", DOWNLOAD_DIR)
 
     async with async_playwright() as p:

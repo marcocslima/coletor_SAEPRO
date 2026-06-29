@@ -15,24 +15,74 @@ SCOPES = [
 ]
 
 
+def get_service(credentials_path: str | Path):
+    creds = Credentials.from_service_account_file(
+        str(credentials_path),
+        scopes=SCOPES,
+    )
+    return build("drive", "v3", credentials=creds, cache_discovery=False)
+
+
+def resolve_or_create_folder(
+    service,
+    folder_name: str,
+    parent_id: str,
+) -> str:
+    query = (
+        f"name='{folder_name}' and "
+        f"'{parent_id}' in parents and "
+        f"mimeType='application/vnd.google-apps.folder' "
+        f"and trashed=false"
+    )
+    existing = (
+        service.files()
+        .list(q=query, fields="files(id)", supportsAllDrives=True, includeItemsFromAllDrives=True)
+        .execute()
+    )
+    items = existing.get("files", [])
+    if items:
+        return items[0]["id"]
+
+    metadata = {
+        "name": folder_name,
+        "mimeType": "application/vnd.google-apps.folder",
+        "parents": [parent_id],
+    }
+    folder = (
+        service.files()
+        .create(
+            body=metadata,
+            fields="id",
+            supportsAllDrives=True,
+        )
+        .execute()
+    )
+    logger.info("Pasta criada no Drive: %s (ID: %s)", folder_name, folder["id"])
+    return folder["id"]
+
+
 def upload_pdf(
     file_path: str | Path,
     folder_id: str,
     credentials_path: str | Path,
     *,
+    project_folder_name: Optional[str] = None,
+    project_folder_id: Optional[str] = None,
     delete_local: bool = False,
 ) -> Optional[str]:
     try:
-        creds = Credentials.from_service_account_file(
-            str(credentials_path),
-            scopes=SCOPES,
-        )
-        service = build("drive", "v3", credentials=creds, cache_discovery=False)
+        service = get_service(credentials_path)
+
+        target_folder = folder_id
+        if project_folder_id:
+            target_folder = project_folder_id
+        elif project_folder_name:
+            target_folder = resolve_or_create_folder(service, project_folder_name, folder_id)
 
         media = MediaFileUpload(str(file_path), mimetype="application/pdf")
         metadata = {
             "name": Path(file_path).name,
-            "parents": [folder_id],
+            "parents": [target_folder],
         }
 
         uploaded = (
