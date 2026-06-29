@@ -35,6 +35,7 @@ from playwright.async_api import (
 )
 
 import sheet_reader
+import drive_uploader
 
 BASE_DIR = Path(__file__).resolve().parent
 load_dotenv(BASE_DIR / ".env")
@@ -59,6 +60,7 @@ if not CHROME_PATH:
         print(f"INFO: Usando Chrome for Testing detectado em: {CHROME_PATH}")
 GOOGLE_SHEET_ID = os.getenv("GOOGLE_SHEET_ID", "").strip()
 GOOGLE_SHEET_CREDENTIALS = os.getenv("GOOGLE_SHEET_CREDENTIALS", "").strip()
+GOOGLE_DRIVE_FOLDER_ID = os.getenv("GOOGLE_DRIVE_FOLDER_ID", "").strip()
 
 PROJECTS: list[str] = []
 if GOOGLE_SHEET_ID and GOOGLE_SHEET_CREDENTIALS:
@@ -599,6 +601,15 @@ async def process_project(page: Page, context: BrowserContext, project: str) -> 
         await open_project_from_search(page, project)
         await go_to_fiscalizacao_documentos(page, project)
         saved = await download_projeto_simplificado(page, context, project)
+
+        if GOOGLE_DRIVE_FOLDER_ID and GOOGLE_SHEET_CREDENTIALS:
+            creds_path = Path(GOOGLE_SHEET_CREDENTIALS)
+            if not creds_path.is_absolute():
+                creds_path = BASE_DIR / creds_path
+            drive_uploader.upload_pdf(
+                saved, GOOGLE_DRIVE_FOLDER_ID, creds_path, delete_local=True
+            )
+
         logger.info("Projeto %s concluído. PDF: %s", project, saved)
     except Exception as exc:
         logger.exception("Erro ao processar projeto %s: %s", project, exc)

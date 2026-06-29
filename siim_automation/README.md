@@ -10,6 +10,7 @@ O script realiza login, trata o aviso de troca de senha, entra no módulo **SAEP
 |---------|-----------|
 | `siim_download_projetos.py` | Código principal da automação |
 | `sheet_reader.py` | Leitor de lista de projetos via Google Sheets |
+| `drive_uploader.py` | Upload dos PDFs baixados para o Google Drive |
 | `diagnostic_dom.py` | Script auxiliar para diagnóstico do DOM da página |
 | `.env.example` | Modelo das variáveis de ambiente |
 | `.env` | Credenciais reais (não versionado) |
@@ -60,6 +61,10 @@ PROJECTS=SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884
 # A coluna A deve conter os projetos a partir da linha 2 (um por linha).
 # GOOGLE_SHEET_CREDENTIALS=credentials/google-sheets.json
 # GOOGLE_SHEET_ID=1abc123xxx...
+
+# --- Google Drive (opcional) ---
+# Se configurado, envia os PDFs para esta pasta do Drive e apaga o local.
+# GOOGLE_DRIVE_FOLDER_ID=1abc123xxx...
 ```
 
 Por segurança, não coloque credenciais reais no `.env.example` e não envie o arquivo `.env` para repositórios. O arquivo `credentials/google-sheets.json` também está protegido pelo `.gitignore`.
@@ -95,6 +100,27 @@ Ao invés de editar `PROJECTS` manualmente, você pode buscar a lista de projeto
    ```
 
 Quando `GOOGLE_SHEET_ID` estiver configurado, o script ignora `PROJECTS` do `.env` e usa a lista da planilha.
+
+## Integração com Google Drive (opcional)
+
+Após baixar cada PDF, o script pode enviá-lo para uma pasta do seu Google Drive e remover o arquivo local.
+
+### Passo a passo
+
+1. **Ative a Google Drive API** no mesmo projeto do GCP usado para as planilhas
+2. **Compartilhe a pasta de destino** do Drive com o e-mail da service account (função "Editor")
+3. Configure o `.env` com o ID da pasta:
+
+   ```env
+   GOOGLE_DRIVE_FOLDER_ID=1abc123xxx...
+   ```
+
+   O `GOOGLE_SHEET_CREDENTIALS` é reutilizado para autenticação.
+
+Para obter o ID da pasta, abra-a no navegador e copie o código na URL:
+`https://drive.google.com/drive/folders/{GOOGLE_DRIVE_FOLDER_ID}`
+
+> **Nota**: Se o upload falhar, o PDF permanece na pasta local (`DOWNLOAD_DIR`). A remoção local só ocorre após upload bem-sucedido.
 
 ## Execução
 

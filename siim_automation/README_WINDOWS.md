@@ -224,6 +224,7 @@ PROJECTS=SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884
 | `CHROME_PATH` | Chrome do sistema (opcional) | Caminho do chrome.exe |
 | `GOOGLE_SHEET_ID` | ID da planilha (opcional) | 1abc123xxx... |
 | `GOOGLE_SHEET_CREDENTIALS` | Caminho do JSON da service account (opcional) | credentials/google-sheets.json |
+| `GOOGLE_DRIVE_FOLDER_ID` | ID da pasta do Drive para enviar os PDFs (opcional) | 1abc123xxx... |
 
 ### Passo 3: Salvar o arquivo
 
@@ -263,6 +264,29 @@ Ao inves de editar `PROJECTS` manualmente, voce pode buscar a lista de projetos 
    ```
 
 Quando `GOOGLE_SHEET_ID` estiver configurado, o script ignora `PROJECTS` do `.env` e usa a lista da planilha.
+
+---
+
+## Integracao com Google Drive (opcional)
+
+Apos baixar cada PDF, o script pode envia-lo para uma pasta do seu Google Drive e remover o arquivo local.
+
+### Passo a passo
+
+1. **Ative a Google Drive API** no mesmo projeto do GCP usado para as planilhas
+2. **Compartilhe a pasta de destino** do Drive com o e-mail da service account (funcao "Editor")
+3. Configure o `.env` com o ID da pasta:
+
+   ```env
+   GOOGLE_DRIVE_FOLDER_ID=1abc123xxx...
+   ```
+
+   O `GOOGLE_SHEET_CREDENTIALS` e reutilizado para autenticacao.
+
+Para obter o ID da pasta, abra-a no navegador e copie o codigo na URL:
+`https://drive.google.com/drive/folders/{GOOGLE_DRIVE_FOLDER_ID}`
+
+> **Nota**: Se o upload falhar, o PDF permanece na pasta local (`DOWNLOAD_DIR`). A remocao local so ocorre apos upload bem-sucedido.
 
 ---
 
