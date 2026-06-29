@@ -37,7 +37,12 @@ def upload_pdf(
 
         uploaded = (
             service.files()
-            .create(body=metadata, media_body=media, fields="id, webViewLink")
+            .create(
+                body=metadata,
+                media_body=media,
+                fields="id, webViewLink",
+                supportsAllDrives=True,
+            )
             .execute()
         )
 
