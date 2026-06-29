@@ -2,23 +2,34 @@
 
 Este projeto automatiza, com Playwright, o login no SIIM de Jundiaí/SP e o download do documento **PROJETO SIMPLIFICADO** para uma lista de projetos SAEPRO.
 
-O script realiza login, trata o aviso de troca de senha, entra no módulo **SAEPRO - Aprovação de Projetos de Obras**, consulta cada projeto, abre a primeira linha dos resultados, navega até **ANÁLISE FISCALIZAÇÃO TRIBUTÁRIA > Documentos**, localiza **PROJETO SIMPLIFICADO** e salva o PDF na pasta configurada.
+O script realiza login, trata o aviso de troca de senha, entra no módulo **SAEPRO - Aprovação de Projetos de Obras**, consulta cada projeto, abre a primeira linha dos resultados, navega até a aba **Documentos** da análise (via Angular `AbrirDocumentosProjeto()` ou navegação direta), localiza **PROJETO SIMPLIFICADO** e salva o PDF na pasta configurada.
 
 ## Arquivos
 
-`siim_download_projetos.py` contém o código principal da automação.
-
-`.env.example` mostra as variáveis necessárias. Copie para `.env` e preencha com suas credenciais reais.
+| Arquivo | Descrição |
+|---------|-----------|
+| `siim_download_projetos.py` | Código principal da automação |
+| `diagnostic_dom.py` | Script auxiliar para diagnóstico do DOM da página |
+| `.env.example` | Modelo das variáveis de ambiente |
+| `.env` | Credenciais reais (não versionado) |
+| `requirements.txt` | Dependências Python do projeto |
+| `.gitignore` | Arquivos ignorados pelo Git |
 
 ## Instalação
 
-Dentro da pasta do projeto, instale as dependências:
-
 ```bash
-cd /home/ubuntu/siim_automation
+# Clonar o repositório
+git clone https://github.com/marcocslima/coletor_SAEPRO.git
+cd coletor_SAEPRO/siim_automation
+
+# Criar e ativar ambiente virtual
 python3 -m venv .venv
 source .venv/bin/activate
-pip install playwright python-dotenv
+
+# Instalar dependências
+pip install -r requirements.txt
+
+# Instalar navegador Chromium do Playwright
 playwright install chromium
 ```
 
@@ -40,6 +51,8 @@ SIIM_PASSWORD=sua_senha_aqui
 DOWNLOAD_DIR=/home/ubuntu/Downloads
 HEADLESS=false
 PROJECTS=SAEPRO2025/6485,SAEPRO2025/6865,SAEPRO2025/6884
+# Opcional: caminho para o Chrome do sistema (se não quiser usar o bundled do Playwright)
+# CHROME_PATH=/usr/bin/google-chrome
 ```
 
 Por segurança, não coloque credenciais reais no `.env.example` e não envie o arquivo `.env` para repositórios.
@@ -47,19 +60,19 @@ Por segurança, não coloque credenciais reais no `.env.example` e não envie o 
 ## Execução
 
 ```bash
-cd /home/ubuntu/siim_automation
+cd coletor_SAEPRO/siim_automation
 source .venv/bin/activate
 python siim_download_projetos.py
 ```
 
-Os PDFs serão salvos em `DOWNLOAD_DIR`. Quando possível, o script renomeia os arquivos para um padrão como `SAEPRO2025_6485_PROJETO_SIMPLIFICADO.pdf`.
+Os PDFs serão salvos em `DOWNLOAD_DIR` com o padrão `{projeto}_PROJETO_SIMPLIFICADO.pdf` (ex: `SAEPRO2025_6485_PROJETO_SIMPLIFICADO.pdf`).
 
 ## Logs e diagnóstico
 
-O script imprime logs no terminal com o progresso de cada etapa. Em caso de erro, ele salva uma captura de tela na pasta de downloads com nome parecido com `erro_SAEPRO2025_6485.png`, para facilitar a análise.
+O script imprime logs no terminal com o progresso de cada etapa. Em caso de erro, ele salva uma captura de tela na pasta de downloads com nome `erro_{projeto}.png` para facilitar a análise.
 
 ## Observações
 
-A interface do SIIM pode mudar. Por isso, o script usa uma combinação de seletores por texto, URLs conhecidas e fallback por ícones/linhas de tabela. Se algum botão ou texto mudar, talvez seja necessário ajustar os seletores.
+A interface do SIIM pode mudar. Por isso, o script usa uma combinação de seletores por texto, URLs conhecidas, fallback por ícones/linhas de tabela e injeção de funções Angular. Se algum botão ou texto mudar, talvez seja necessário ajustar os seletores.
 
 Se o sistema solicitar CAPTCHA, autenticação adicional, sessão expirada ou troca obrigatória de senha sem opção de continuar, a automação não conseguirá prosseguir sem intervenção manual.
