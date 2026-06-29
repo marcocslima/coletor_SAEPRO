@@ -14,10 +14,20 @@ SCOPES = [
 ]
 
 
+def _col_letter_to_index(col: str | int) -> int:
+    if isinstance(col, int):
+        return col
+    col = col.upper()
+    result = 0
+    for ch in col:
+        result = result * 26 + (ord(ch) - ord("A") + 1)
+    return result
+
+
 def get_projects(
     spreadsheet_id: str,
     credentials_path: str | Path,
-    column: str = "A",
+    column: str | int = "A",
     header_rows: int = 1,
 ) -> List[str]:
     creds = Credentials.from_service_account_file(
@@ -27,7 +37,8 @@ def get_projects(
     client = gspread.authorize(creds)
 
     sheet = client.open_by_key(spreadsheet_id).sheet1
-    values = sheet.col_values(column)
+    col_index = _col_letter_to_index(column)
+    values = sheet.col_values(col_index)
 
     if header_rows > 0:
         values = values[header_rows:]
