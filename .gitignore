@@ -1,0 +1,25 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Environment variables with secrets
+.env
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Debug/diagnostic files
+page_dump.html
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
