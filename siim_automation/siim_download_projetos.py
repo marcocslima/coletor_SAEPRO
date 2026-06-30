@@ -545,6 +545,206 @@ async def save_download(download: Download, project: str, doc_name: str) -> Path
     return target
 
 
+async def download_alvara(page: Page, context: BrowserContext, project: str) -> Optional[Path]:
+    logger.info("Iniciando fluxo de download do Alvará para o projeto %s.", project)
+
+    try:
+        # 1) Localiza o link verde (deferido) de projeto relacionado com Alvará
+        # Tenta com retry e recarga
+        alvara_link = None
+        for attempt in range(3):
+            try:
+                await page.wait_for_load_state("networkidle", timeout=15_000)
+            except Exception:
+                pass
+            await asyncio.sleep(2)
+
+            for sel in [
+                "a.badge.bg-success:has-text('SUBSTITUIÇÃO'):has-text('ALVARÁ')",
+                "a.badge.bg-success:has-text('ALVARÁ')",
+                "a:has-text('SUBSTITUIÇÃO'):has-text('ALVARÁ')",
+            ]:
+                candidate = page.locator(sel).first
+                if await candidate.count() > 0:
+                    alvara_link = candidate
+                    break
+            if alvara_link:
+                break
+            if attempt < 2:
+                logger.info("Link de Alvará não encontrado (tentativa %d/3). Recarregando...", attempt + 1)
+                await page.reload(wait_until="domcontentloaded", timeout=PAGE_TIMEOUT)
+                await wait_ready(page)
+
+        if not alvara_link:
+            logger.warning("Nenhum link verde de Alvará encontrado após 3 tentativas.")
+            try:
+                diag = DOWNLOAD_DIR / f"diag_{safe_project_name(project)}_sem_alvara.png"
+                await page.screenshot(path=str(diag), full_page=True)
+                logger.info("Screenshot diagnóstico salvo: %s", diag)
+            except Exception:
+                pass
+            return None
+
+        link_text = (await alvara_link.text_content() or "").strip()
+        logger.info("Clicando no link: %s", link_text)
+        await alvara_link.click(timeout=ACTION_TIMEOUT)
+        await wait_ready(page)
+        await asyncio.sleep(3)
+
+        pages = context.pages
+        if len(pages) > 1:
+            page = pages[-1]
+            await wait_ready(page)
+            await asyncio.sleep(2)
+
+        logger.info("URL subprojeto: %s", page.url)
+
+        # Extrai codigoProjeto da URL do subprojeto
+        subprojeto_id = "56763"
+        m = re.search(r'codigoProjeto=(\d+)', page.url)
+        if m:
+            subprojeto_id = m.group(1)
+
+        # 2) Clica "Emissão de alvará" no breadcrumb/menu de navegação
+        emissao_link = page.locator("a.hvr-wobble-horizontal:has-text('Emissão')").first
+        if await emissao_link.count() == 0:
+            emissao_link = page.locator("a:has-text('Emissão de alvará')").first
+        if await emissao_link.count() == 0:
+            emissao_link = page.locator("text=Emissão de alvará").first
+
+        if await emissao_link.count() > 0 and await emissao_link.is_visible():
+            await emissao_link.click(timeout=ACTION_TIMEOUT)
+            await wait_ready(page)
+            await asyncio.sleep(3)
+            logger.info("URL após emissão: %s", page.url)
+        else:
+            logger.warning("'Emissão de alvará' não encontrado visível no subprojeto.")
+            return None
+
+        # 3) Na página AlvaraPendentesProjeto, procura o Alvará na lista
+        pdf_data = await page.evaluate("""() => {
+            try {
+                var m = window.model || {};
+                var alvaras = m.AlvarasEmitidos || [];
+                if (alvaras.length > 0) {
+                    var a = alvaras[0];
+                    return {
+                        id: a.Id,
+                        codigoAlvaraOriginal: a.CodigoAlvaraOriginal,
+                        certidaoId: a.CodigoCertidaoProjeto,
+                        numero: a.DescricaoNumeroAlvara,
+                        codigoProjeto: a.CodigoProjeto,
+                        codigoDocumentoProjeto: a.CodigoDocumentoProjeto,
+                        descricaoDocumento: a.DescricaoDocumento,
+                        codigoTipoDocumento: a.CodigoTipoDocumento
+                    };
+                }
+                return null;
+            } catch(e) { return null; }
+        }""")
+
+        if not pdf_data:
+            logger.warning("Nenhum Alvará encontrado no model da página.")
+            return None
+
+        logger.info("Alvará: %s (id=%s, certidaoId=%s)", pdf_data.get("numero"), pdf_data.get("id"), pdf_data.get("certidaoId"))
+
+        alvara_id = pdf_data["id"]
+
+        # Abordagem A: chamar o método Imprimir do Angular scope
+        logger.info("Tentando Angular scope.Imprimir(%s)", alvara_id)
+        try:
+            async with page.expect_download(timeout=20_000) as dl_info:
+                await page.evaluate(f"""() => {{
+                    try {{
+                        var el = document.querySelector('[ng-controller="AlvaraController"]') || document.querySelector('[ng-controller]');
+                        if (!el) el = document.body;
+                        var scope = angular.element(el).scope();
+                        if (scope && scope.Imprimir) {{
+                            scope.Imprimir({alvara_id});
+                            return true;
+                        }}
+                        // Fallback: clicar no botão com ng-click
+                        var btns = document.querySelectorAll('[ng-click*="Imprimir"]');
+                        for (var i = 0; i < btns.length; i++) {{
+                            if (btns[i].offsetParent !== null) {{
+                                btns[i].click();
+                                return true;
+                            }}
+                        }}
+                        return false;
+                    }} catch(e) {{ return false; }}
+                }}""")
+                dl = await dl_info.value
+                saved = await save_download(dl, project, f"ALVARA_{pdf_data['numero'].replace('/', '_')}")
+                logger.info("Download via Angular scope.Imprimir: %s", saved)
+                return saved
+        except Exception as e:
+            logger.info("scope.Imprimir Falhou: %s", e)
+
+        # Abordagem B: URL direta ImprimirAsync
+        for imprimir_url in [
+            f"https://siim21.cijun.sp.gov.br/PMJ/APROVE/Alvara/ImprimirAsync?codigoAlvara={alvara_id}",
+            f"https://siim21.cijun.sp.gov.br/PMJ/APROVE/Alvara/ImprimirAsync?Id={alvara_id}",
+        ]:
+            try:
+                logger.info("Tentando URL: %s", imprimir_url)
+                resp = await context.request.get(imprimir_url, timeout=20_000)
+                ct = (resp.headers.get("content-type") or "").lower()
+                body = await resp.body()
+                logger.info("  status=%s, ct=%s, body=%s bytes", resp.status, ct, len(body))
+                if resp.ok and len(body) > 500:
+                    target = DOWNLOAD_DIR / f"{safe_project_name(project)}_ALVARA_{pdf_data['numero'].replace('/', '_')}.pdf"
+                    target.write_bytes(body)
+                    logger.info("Alvará baixado via URL: %s (ct=%s)", target, ct)
+                    return target
+            except Exception as e:
+                logger.warning("Erro URL %s: %s", imprimir_url, e)
+
+        # Abordagem C: navegar para ImprimirAsync (pode disparar download)
+        try:
+            async with page.expect_download(timeout=15_000) as dl_info:
+                await page.goto(f"https://siim21.cijun.sp.gov.br/PMJ/APROVE/Alvara/ImprimirAsync?codigoAlvara={alvara_id}",
+                              wait_until="domcontentloaded", timeout=PAGE_TIMEOUT)
+                dl = await dl_info.value
+                saved = await save_download(dl, project, f"ALVARA_{pdf_data['numero'].replace('/', '_')}")
+                logger.info("Download via navegação ImprimirAsync: %s", saved)
+                return saved
+        except Exception as e:
+            logger.info("Navegação ImprimirAsync falhou: %s", e)
+
+        # Abordagem D: clicar no botão de imprimir via Playwright locator
+        try:
+            print_btn = page.locator("button[ng-click*='Imprimir'], .fa-print").first
+            if await print_btn.count() > 0:
+                async with page.expect_download(timeout=15_000) as dl_info:
+                    await print_btn.click(timeout=ACTION_TIMEOUT)
+                    dl = await dl_info.value
+                    saved = await save_download(dl, project, f"ALVARA_{pdf_data['numero'].replace('/', '_')}")
+                    logger.info("Download via clique no botão: %s", saved)
+                    return saved
+        except Exception as e:
+            logger.info("Clique no botão falhou: %s", e)
+
+        # Abordagem E: print-to-PDF da página como último recurso
+        logger.info("Tentando print-to-PDF da página Alvará.")
+        try:
+            pdf_bytes = await page.pdf(format='A4', print_background=True)
+            if len(pdf_bytes) > 1000:
+                target = DOWNLOAD_DIR / f"{safe_project_name(project)}_ALVARA_{pdf_data['numero'].replace('/', '_')}.pdf"
+                target.write_bytes(pdf_bytes)
+                logger.info("Alvará salvo via print-to-PDF: %s", target)
+                return target
+        except Exception as e:
+            logger.warning("Print-to-PDF falhou: %s", e)
+
+        logger.error("Nenhuma abordagem de download do Alvará funcionou.")
+        return None
+
+    except Exception as e:
+        logger.exception("Erro inesperado ao baixar Alvará do projeto %s: %s", project, e)
+        return None
+
 async def download_document(page: Page, context: BrowserContext, project: str, doc_name: str) -> Optional[Path]:
     logger.info("Localizando linha '%s'.", doc_name)
 
@@ -619,12 +819,7 @@ async def download_document(page: Page, context: BrowserContext, project: str, d
 async def process_project(page: Page, context: BrowserContext, project: str) -> None:
     try:
         await open_project_from_search(page, project)
-        await go_to_fiscalizacao_documentos(page, project)
-
-        available = await list_available_documents(page)
-        if not available:
-            logger.warning("Nenhum documento encontrado na aba do projeto %s.", project)
-            return
+        await asyncio.sleep(1)
 
         creds_path = _resolve_creds_path()
         project_folder_id: Optional[str] = None
@@ -633,6 +828,29 @@ async def process_project(page: Page, context: BrowserContext, project: str) -> 
             project_folder_id = drive_uploader.resolve_or_create_folder(
                 svc, safe_project_name(project), GOOGLE_DRIVE_FOLDER_ID
             )
+
+        # Download do Alvará (a partir da página base do projeto)
+        await wait_ready(page)
+        await asyncio.sleep(3)
+        alvara_saved = await download_alvara(page, context, project)
+        if alvara_saved and GOOGLE_DRIVE_FOLDER_ID and creds_path:
+            drive_uploader.upload_pdf(
+                alvara_saved,
+                GOOGLE_DRIVE_FOLDER_ID,
+                creds_path,
+                project_folder_id=project_folder_id,
+                delete_local=True,
+            )
+            logger.info("Download e upload do Alvará do projeto %s concluido.", project)
+        elif not alvara_saved:
+            logger.info("Alvará não disponível ou não encontrado para o projeto %s.", project)
+
+        await go_to_fiscalizacao_documentos(page, project)
+
+        available = await list_available_documents(page)
+        if not available:
+            logger.warning("Nenhum documento encontrado na aba do projeto %s.", project)
+            return
 
         for doc_name in DOCUMENT_TYPES:
             matched = any(doc_name.upper() in avail.upper() for avail in available)

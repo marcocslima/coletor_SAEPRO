@@ -1,0 +1,2142 @@
+<!DOCTYPE html><html lang="pt-br"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>APROVE - Dados do Projeto</title>
+
+    <!--Favicon-->
+    <link rel="icon" type="image/png" href="https://src.cijun.sp.gov.br/framework/cijun/img/CijunFavico.png">
+    <link rel="shortcut icon" type="image/png" href="https://src.cijun.sp.gov.br/framework/cijun/img/CijunFavico.png">
+
+    <!--STYLESHEETS CIJUN PADRÂO-->
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/bootstrap/v4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/angularjs/selectize/selectize.bootstrap3.css">
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/angularjs/angular-bootstrap-toggle/angular-bootstrap-toggle.min.css">
+    <link rel="stylesheet" href="/PMJ/APROVE/Content/Css/cij-anims.css">
+    <link rel="stylesheet" href="/PMJ/APROVE/Content/Css/cij-menu.css">
+    <link rel="stylesheet" href="/PMJ/APROVE/Content/Css/cij-menu-compat.css">
+    <link rel="stylesheet" href="/PMJ/APROVE/Content/Css/aprove.css">
+
+    
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/jquery/select/css/select.min.css">
+
+    <!-- Customização de Cores -->
+    
+
+<style>
+    .modal-full {
+        background-color: #fff;
+    }
+
+    .bg-accent {
+        background-color: #e69500 !important;
+    }
+
+    .text-accent {
+        color: #e69500 !important;
+    }
+
+    .breadcrumb-prog > li.active > .step {
+        background-color: #007bff;
+        box-shadow: 0 0 0 0.3rem #e69500;
+    }
+
+    .breadcrumb-prog > li.done > .step {
+        background-color: #fff;
+        box-shadow: 0 0 0 0.3rem #e69500;
+    }
+
+    .breadcrumb-prog > li > .step {
+        background-color: #fff;
+        border: 3px solid #fff;
+    }
+
+    .breadcrumb-prog > li.selected > .step {
+        background-color: #e69500;
+        box-shadow: 0 0 0 0.3rem #e69500;
+    }
+
+    .breadcrumb-prog > li.active > .step::after,
+    .breadcrumb-prog > li.done > .step::after, 
+    .breadcrumb-prog > li.selected > .step::after, 
+    .breadcrumb-prog > li ~ li.active > .step::before,
+    .breadcrumb-prog > li ~ li.done > .step::before,
+    .breadcrumb-prog > li ~ li.selected > .step::before {
+        background-color: #e69500;
+    }
+</style>
+
+    <!--SCRIPTS CIJUN PADRÂO-->
+    <script src="https://src.cijun.sp.gov.br/jquery/v3.5.1/jquery.min.js"></script>
+    <script src="https://src.cijun.sp.gov.br/js/popper/1.16.0/popper.min.js"></script>
+    <script src="https://src.cijun.sp.gov.br/bootstrap/v4.5.0/js/bootstrap.min.js"></script>
+    <script src="https://src.cijun.sp.gov.br/framework/cijun/js/cijun.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/framework/cijun/js/Util.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/js/siim/CIJUN.SIIM.Tratamento.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/jquery/plugins/maskedinput/v1.3.1/jquery.maskedinput.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/jquery/plugins/mask/v1.14.14/jquery.mask.min.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/jquery/plugins/maskmoney/v3.0.2/jquery.maskmoney.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/v1.6.10/angular.min.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/v1.6.10/angular-messages.min.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/v1.6.10/angular-locale_pt-br.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/selectize/selectize.min.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/selectize/angular-selectize.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/angular-bootstrap-toggle/angular-bootstrap-toggle.min.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/js/moment/2.22.2/moment.min.js" type="text/javascript"></script>
+
+    
+    <script src="https://src.cijun.sp.gov.br/jquery/select/js/select.min.js" type="text/javascript"></script>
+
+    <script src="https://src.cijun.sp.gov.br/angularjs/v1.6.10/angular-sanitize.min.js"></script>
+    <script src="/PMJ/APROVE/Scripts/BaseController.js?v7"></script>
+    <script src="/PMJ/APROVE/Scripts/CustomScripts/Services.js?v2"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/cijun/v1.0.0/directives.js?v1" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/angularjs/cijun/v1.0.0/filters.js" type="text/javascript"></script>
+
+    <script>
+        var urlCarregarLista =  '/PMJ/APROVE/Home/Get';
+        var modelErros =  null;
+        var urlHome = '/PMJ/APROVE/';
+        var IsModal = false;
+        var MensagemSucesso = '';
+        var MensagemErro = '';
+        var MensagemAlerta = '';
+        var urlConsultaRapida = '/PMJ/APROVE/ConsultaDetalhada';
+        var urlAutenticacao = '/PMJ/APROVE/Home/LogOff';
+        var urlErroIndex = '/PMJ/APROVE/Erro';
+
+        $(document).ready(function () {
+            var inputs = "input[maxlength], textarea[maxlength]";
+
+            $(".numeroDecimal").maskMoney({ prefix: '', allowNegative: true, thousands: '.', decimal: ',', affixesStay: false });
+
+            $(".dataFormat").unmask();
+            $(".dataFormat").focusout(function () {
+                $(".dataFormat").unmask();
+                $(".dataFormat").mask("99/99/9999");
+            });
+
+            $(".campoHora").focusout(function () {
+                $(".campoHora").unmask().mask("99:99");
+            });
+            $(".campoHora").focusin(function () {
+                $(".campoHora").unmask();
+            });
+
+            $('#customModal').on('shown.bs.modal', function () {
+                if ($('#btnModalCallBackConfirmar').text().toUpperCase() === "OK")
+                    $('#btnModalCallBackConfirmar').focus();
+            });
+
+         });
+
+        var callBackComplete = function () { };
+        OpenMode = { Normal: 1, Full: 2 };
+        ModalSize = { sm: 'modal-sm', lg: 'modal-lg', xl: 'modal-xl', xlg: 'modal-xlg' };
+
+        function createIframeModal() {
+            destroyIframeModal();
+            $('#diviframeModal').append('<iframe id="iframeModal" class="iframe" scrolling="no" frameBorder="0"></iframe>');
+        }
+
+        function destroyIframeModal() {
+            var iframe = document.getElementById("iframeModal");
+            if (iframe) {
+                iframe.parentNode.removeChild(iframe);
+            }
+        }
+
+        function closeModalView() {
+            var iframe = document.getElementById("iframeModal");
+            var _returnValue = iframe.contentWindow.returnValue;
+            $('#exemploModalOpenView').modal('toggle');
+            destroyIframeModal();
+            if (_returnValue) {
+                var scope = angular.element(document.getElementById('APROVE')).scope();
+                scope.CallBackComplete(_returnValue);
+            }
+        }
+
+        function setInputMask() {
+            setTimeout(function () {
+                $(".cep").unmask().mask("?99999-999");
+                var tamanho = $(".cpfCnpj").val().replace(/\D/g, '').length;
+                if (tamanho == 11) {
+                    $(".cpfCnpj").mask("999.999.999-99");
+                } else if (tamanho == 14) {
+                    $(".cpfCnpj").mask("99.999.999/9999-99");
+                }
+            }, 1000);
+        }
+
+        function showAlertDange() {
+            $("#div_alertDanger").fadeTo(500, 1, function () {
+                setTimeout(function () {
+                    $("#div_alertDanger").slideUp(500);
+                }, 10000);
+            });
+        }
+
+        $(function () {
+            $("[data-hide]").on("click", function () {
+                $(this).closest("." + $(this).attr("data-hide")).hide();
+            });
+        });
+    </script>
+</head>
+<body ng-app="APROVE" id="APROVE" ng-controller="BaseController" ondragstart="return false;" ondrop="return false;" class="ng-scope" style="padding-top: 49px !important;"><div id="preloaderCijun" class="preloaderCijun" style="position: fixed; width: 100%; height: 100%; top: 0px; left: 0px; background-color: rgb(158, 158, 158); z-index: 9999; opacity: 0.9; display: none;"><div class="bodyLoader loaderItem" style="width: 100px; height: 100px; position: absolute; top: 50%; left: 50%; margin-top: -50px; margin-left: -50px;"><div class="loader-inner loadingDefault"></div><div></div></div></div><div class="menu-wrap novo-menu"><nav class="menu" style="padding-bottom: 49px !important;"><div class="icon-list"><div class="nivel1" name="Consulta"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span>Consulta</span></a><div class="menu-wrapSubmenu1"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/PlantaoAtendimento"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Agenda de atendimento</span></a><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/ConsultaDetalhada"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Detalhada de projetos</span></a><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/Guia"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Guias</span></a><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/MensagemUsuario"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Mensagens</span></a></div></div><div class="nivel1" name="Manutenção"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span>Manutenção</span></a><div class="menu-wrapSubmenu1"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/Comunicado"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Comunicados</span></a><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/LiberacaoComuniquese"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Liberar comunique-se imp.</span></a></div></div><div class="nivel1" name="Relatórios"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span>Relatórios</span></a><div class="menu-wrapSubmenu1"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/RelatoriosPersonalizados"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Meus relatórios</span></a></div></div><div class="nivel1" name="Tabelas"><a href="javascript:void(0)"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span><span>Tabelas</span></a><div class="menu-wrapSubmenu1"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/Profissional"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Cad. profissional/municípe</span></a><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/MotivosIndeferimento"><span class="glyphicon glyphicon-minus" aria-hidden="true"></span><span>Motivos indeferimento</span></a></div></div><div id="icon-actions"><a href="https://ajuda.cijun.sp.gov.br/" +="" target="_blank" title="Ajuda"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g stroke="#fff" stroke-linejoin="round" stroke-miterlimit="10" fill="none"><circle stroke-linecap="round" cx="11.5" cy="12.5" r="11"></circle><path stroke-linecap="round" d="M8.5 10c0-1.656 1.343-3 3-3 1.656 0 3 1.344 3 3 0 1.658-1.344 3-3 3v3"></path><path d="M12 18.5c0 .276-.224.5-.5.5s-.5-.224-.5-.5.224-.5.5-.5.5.224.5.5z"></path></g></svg><span>AJUDA</span></a><a href="/PMJ/APROVE/home/LogOff" title="Sair"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-miterlimit="10" fill="none"><path d="M14.5 19.521v2.979h-13v-21h13v4M5.5 12.5h17M17.5 7.492l5 5-5 5"></path></g></svg><span>Sair</span></a></div></div></nav></div>
+    <input type="hidden" value="/PMJ/APROVE/" id="baseURl" autocomplete="off" style="">
+    
+
+    <div ng-controller="BaseController" class="position-relative container ng-scope">
+        <div id="barra-alerta" class="w-100">
+            <div id="div_alertDangerList" class="alert alert-danger alert-dismissible ng-hide text-center" ng-show="Errors.length&gt;0" style="opacity: 1; display: block;">
+                <!-- ngRepeat: erro in Errors -->
+                <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+            </div>
+            <div id="div_alertDanger" class="alert alert-danger alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemErro &amp;&amp; MensagemErro.length &gt; 0" style="opacity: 1; display: block;">
+                <strong>Erro:</strong> 
+                <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+            </div>
+            <div id="div_alertSuccess" class="alert alert-success alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemSucesso &amp;&amp; MensagemSucesso.length &gt; 0">
+                
+                <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+            </div>
+            <div id="div_alertAlert" class="alert alert-warning alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemAlerta &amp;&amp; MensagemAlerta.length &gt; 0">
+                <strong>Atenção: </strong>
+                <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+            </div>
+        </div>
+
+        
+
+<script type="text/javascript">
+    var model = {"Id":33555,"DescricaoNumProjeto":"SAEPRO2023/791","CodigoUsuarioExterno":245,"Status":null,"QuantidadeCopias":null,"DataSolicitacao":"\/Date(1695783600000)\/","DataCancelamento":null,"DataAprovacao":"\/Date(1762484400000)\/","FlagIsentoTaxaProtocolo":false,"FlagProjetoFoiPlotado":false,"DataHoraltimaAlteracao":"\/Date(-62135589600000)\/","UsuarioExterno":{"Id":245,"CPFCNPJ":3360042816,"Nome":"ALEXANDERS GONÇALVES DA SILVA","Senha":null,"Email":"almaju@uol.com.br","Token":"","TipoPessoa":70,"ProfissionalPessoaFisica":true,"ProfissionalPessoaJuridica":false,"OcultarBarraDeCamposAdicionais":false,"TipoCadastro":80,"TipoCadastroUsuario":null,"AlteracaoDeTipoDeCadastro":false,"AlteracaoNoValidaDoCadastro":false,"UsuarioProfissional":true,"UsuarioMunicipe":false,"DataCadastro":"\/Date(1103767200000)\/","DataCancelamento":null,"AceiteCadastro":true,"DescricaoAceite":null,"IdFicha":1,"ValidaCadastro":true,"ReCaptcha":null,"BloqueiaCamposEndereco":false,"Enderecos":[{"Id":1114,"IdTipoEndereco":17,"NomeTipoEndereco":null,"Logradouro":"R  SAO  PEDRO","Bairro":"PONTE SÃO JOÃO","NumeroImovel":"440","Complemento":"","CodigoMunicipio":25904,"NomeMunicipio":null,"SiglaEstado":"SP","DDDTelefone":"11","NumeroTelefone":"999140320","CEP":13216010,"CEPFormatado":null,"DataCadastro":"\/Date(1662396151000)\/","DataCancelamento":null,"CodigoUsuarioExterno":245,"Municipios":null,"Botao":false,"IdFicha":5,"CamposAdicionais":null,"NomeForm":"dadosGeraisForm","NomeColecao":"Enderecos","IdUsuario":42},{"Id":1115,"IdTipoEndereco":16,"NomeTipoEndereco":null,"Logradouro":"R  SAO  PEDRO","Bairro":"PONTE SÃO JOÃO","NumeroImovel":"440","Complemento":"","CodigoMunicipio":25904,"NomeMunicipio":null,"SiglaEstado":"SP","DDDTelefone":"11","NumeroTelefone":"999140320","CEP":13216010,"CEPFormatado":null,"DataCadastro":"\/Date(1662396151000)\/","DataCancelamento":null,"CodigoUsuarioExterno":245,"Municipios":null,"Botao":false,"IdFicha":5,"CamposAdicionais":null,"NomeForm":"dadosGeraisForm","NomeColecao":"Enderecos","IdUsuario":42}],"Atividades":[{"Id":346,"IdAtividade":14,"DescricaoAtividade":null,"NumeroDocumento":"5060544850","CodigoUsuarioExterno":245,"IdTipoDocumento":21,"DescricaoTipoDocumento":"CAU","Principal":false,"DataCancelamento":"\/Date(1662346800000)\/","DataCadastro":"\/Date(1103767200000)\/","DominioGenerico":{"Id":14,"Descricao":"ARQUITETURA E URBANISMO","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":3,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false},"TipoDocumento":{"Id":21,"Descricao":"CAU","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":4,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false}},{"Id":347,"IdAtividade":14,"DescricaoAtividade":null,"NumeroDocumento":"448184","CodigoUsuarioExterno":245,"IdTipoDocumento":21,"DescricaoTipoDocumento":"CAU","Principal":false,"DataCancelamento":"\/Date(1662346800000)\/","DataCadastro":"\/Date(1103767200000)\/","DominioGenerico":{"Id":14,"Descricao":"ARQUITETURA E URBANISMO","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":3,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false},"TipoDocumento":{"Id":21,"Descricao":"CAU","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":4,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false}},{"Id":348,"IdAtividade":14,"DescricaoAtividade":null,"NumeroDocumento":"A925861","CodigoUsuarioExterno":245,"IdTipoDocumento":21,"DescricaoTipoDocumento":"CAU","Principal":true,"DataCancelamento":null,"DataCadastro":"\/Date(1103767200000)\/","DominioGenerico":{"Id":14,"Descricao":"ARQUITETURA E URBANISMO","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":3,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false},"TipoDocumento":{"Id":21,"Descricao":"CAU","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":4,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false}}],"Responsaveis":[],"CamposAdicionais":[],"NomeForm":"dadosGeraisForm","CREACAU":"A925861","IssPago":false,"ValidarCFM":false,"CFM":null,"HabilitaEdicaoCPFCNPJ":false,"CPFCNPJFormatado":"033.600.428-16","UsuarioEstaLogado":false,"Status":null,"SituacaoProfissional":0,"ParecerSobreSituacaoJuntoAoMunicipio":null,"NovoCadastro":false,"EdicaoComOrigemSolicitacaoNovoProjeto":false,"ConfigHabilitarSolicitacaoProjetoIPTUFicticio":false,"Regex":null,"Mascara":null,"DescricaoIPTUFicticio":null,"ExibirSituacaoCadastroWEB":false,"PossuiDadosBalcaoDoEmpreendedor":false,"FlagRecebeEmail":null},"CodigoEtapa":848,"NomeEtapa":"ANÁLISE DO TÍTULO DE PROPRIEDADE","CodigoTipoAnalise":null,"Metragem":0,"CamposAdicionais":[],"NomeForm":"dadosNovoProjetoForm","IdFicha":0,"Regex":null,"Mascara":null,"DescIPTU":null,"FluxoProjetoAtual":{"Id":0,"CodigoProjeto":0,"DescricaoNumProj":null,"CodigoFluxo":199,"CodigoEtapa":null,"CodigoStatusEtapa":0,"DataInicioEtapa":"\/Date(-62135589600000)\/","DataFimEtapa":null,"CodigoUsuarioInternoExecutor":0,"CodigoUsuarioExternoExecutor":0,"CodigoUsuarioExterno":0,"CodigoEtapaObrigatoria":null,"DataPrazoInterno":null,"DataPrazoExterno":null,"Prioridade":null,"Etapa":null,"Fluxo":null,"StatusEtapa":null,"UsuarioExterno":null,"DiasPrazo":null,"PodeEditarPrazoInterno":false,"EmComuniquese":false,"DataStamp":"\/Date(-62135589600000)\/","DepartamentoResponsavel":null},"ProjetoEstaCancelado":false,"CodigoFluxoAtual":199,"ProjetoAssuntos":[{"Id":136429,"IdProjeto":33555,"IdAssunto":270,"Assunto":{"Id":270,"CodigoFluxo":0,"DescricaoAssunto":"SOLICITAÇÃO DE ALVARÁ                   ","FlagFluxoPrincipal":false,"Fluxo":{"Id":174,"NomeFluxo":"SOLICITAÇÃO DE ALVARÁ DE EXECUÇÃO","DescricaoFluxo":null,"TextoAceite":"Declaro que assumo completa responsabilidade sobre as informações por mim prestadas, bem como a responsabilidade sobre a veracidade dos documentos e informações.","DataCadastro":"\/Date(1573009200000)\/","DataCancelamento":null,"IdUsuarioResponsavelPelaCriacao":"1","CodigoDeptoResponsavelPeloFluxo":61,"NomeDeptoResponsavelPeloFluxo":null,"FlagFluxoTemplate":true,"PermiteAlterarAssunto":true,"PermiteAlterarIPTU":false,"PermiteAlterarProfissional":true,"PermiteAlterarInteressado":false,"PermiteSubstSeNaoTiverAlvaraAtivo":false,"PermiteAlterarDocumentos":true,"PermiteAlterarDocumentosAdicionais":true,"PermiteInformarJustificativa":false,"PermiteAnexarDocAnaliseProjConcluido":false,"PermiteAlterarDados":false,"PermiteSubfluxosSimultaneos":false,"FluxoSubstituicao":false,"FluxoGeraNovoNumeroProjeto":false,"FluxoBarrarSolicitacao":false,"FluxoBarrarSolicitacaoExcetoHabiteseParcial":false,"FluxoAprovacaoProjeto":false,"TipoDeFluxo":0,"DescricaoTipoDeFluxo":null,"FlagFluxoAutomatico":false,"PermiteSolicitanteComoInteressado":false,"GeraCopiaFluxoPrincipalSubstituicaoAprovada":false,"SolicitanteDeveSerInteressadoPrincipal":null,"PermiteSolicitacaoApenasComAlvaraAtivo":false,"EtapaSolicitacaoEmiteGuia":false,"QuantidadeMinimaResponsaveis":null},"AssuntoSemVinculoComFluxo":false,"IsModal":false,"CodigoTipoUso":7478,"CodigoTipoSoma":null},"Metragem":"1,00","CodigoTipoPavimento":null,"DescricaoTipoPavimento":null,"DataCadastro":"\/Date(1695783600000)\/","DataCancelamento":null,"CodigoFluxo":199,"Fluxo":{"Id":199,"NomeFluxo":"ANÁLISE CONTRIBUINTE IMOBILIÁRIO SOLIC. ALVARÁ","DescricaoFluxo":null,"TextoAceite":null,"DataCadastro":"\/Date(1603335600000)\/","DataCancelamento":null,"IdUsuarioResponsavelPelaCriacao":"45","CodigoDeptoResponsavelPeloFluxo":201,"NomeDeptoResponsavelPeloFluxo":null,"FlagFluxoTemplate":true,"PermiteAlterarAssunto":false,"PermiteAlterarIPTU":false,"PermiteAlterarProfissional":false,"PermiteAlterarInteressado":false,"PermiteSubstSeNaoTiverAlvaraAtivo":false,"PermiteAlterarDocumentos":false,"PermiteAlterarDocumentosAdicionais":false,"PermiteInformarJustificativa":false,"PermiteAnexarDocAnaliseProjConcluido":false,"PermiteAlterarDados":false,"PermiteSubfluxosSimultaneos":false,"FluxoSubstituicao":false,"FluxoGeraNovoNumeroProjeto":false,"FluxoBarrarSolicitacao":false,"FluxoBarrarSolicitacaoExcetoHabiteseParcial":false,"FluxoAprovacaoProjeto":false,"TipoDeFluxo":0,"DescricaoTipoDeFluxo":null,"FlagFluxoAutomatico":true,"PermiteSolicitanteComoInteressado":false,"GeraCopiaFluxoPrincipalSubstituicaoAprovada":false,"SolicitanteDeveSerInteressadoPrincipal":null,"PermiteSolicitacaoApenasComAlvaraAtivo":false,"EtapaSolicitacaoEmiteGuia":false,"QuantidadeMinimaResponsaveis":null},"CodigoTipoUsoINSS":null}],"ProjetoIPTUs":[{"Id":36634,"IdProjeto":33555,"Descricao":"16.065.0002         ","DescricaoSemPontos":"160650002","Lote":"02","Quadra":"29","Principal":true,"DataCadastro":"\/Date(1695783600000)\/","DataCancelamento":null,"Logradouro":"LEONARDO AIELLO","Numero":"123","Complemento":null,"Bairro":"MARCO LEITE                                                                     ","Municipio":"JUNDIAI","Cep":13215756,"UF":"SP","Loteamento":"HORTO FLORESTAL","FlagTipoContribuinteImobiliario":73,"DescricaoTipoContribuinte":"IPTU","PermiteIncra":true,"NomeTipoLogradouro":"R ","FrentesEsquinas":"NÃO INFORMADO"}],"UltimaOrdemEtapaEmAndamento":null,"CodigoUsuarioExternoAlteracao":null,"Crea":null,"Nome":null,"ProjetoResponsaveis":[{"Id":60691,"IdProjeto":33555,"CodigoAtividadeProfissional":348,"IdResponsabilidade":270,"ARTRRT":"12827777","DataCadastro":"\/Date(1695783600000)\/","DataCadastroString":null,"DataSaida":null,"DataCancelamento":null,"FlagProfissionalSolicitanteProj":true,"FlagRecebimentoComuniqueSe":true,"Atividade":{"Id":348,"IdAtividade":14,"DescricaoAtividade":null,"NumeroDocumento":"A925861","CodigoUsuarioExterno":245,"IdTipoDocumento":21,"DescricaoTipoDocumento":"CAU","Principal":true,"DataCancelamento":null,"DataCadastro":"\/Date(1103767200000)\/","DominioGenerico":{"Id":14,"Descricao":"ARQUITETURA E URBANISMO","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":3,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false},"TipoDocumento":{"Id":21,"Descricao":"CAU","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":4,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false}},"ResponsavelPor":{"Id":270,"Descricao":"RESPONSÁVEL PELO PROJETO","Regex":null,"DataCadastro":"\/Date(1572922800000)\/","DataCancelamento":null,"NomeUsuarioAlteracao":"TESTE DE ANALISTAS","Situacao":"Ativo","IdUsuario":1,"IdFicha":12,"Cancelado":false,"Ativo":true,"DataCadastroString":"05/11/2019","DataCancelamentoString":"","MensagemTela":null,"IsModal":false},"ResponsabilidadeObrigatoria":true,"DescricaoResponsabilidadeObrigatoria":"RESPONSÁVEL PELO PROJETO","RemoverResponsabilidadeObrigatoria":false,"TornarResponsabilidadeObrigatoria":false,"Nome":"ALEXANDERS GONÇALVES DA SILVA","Crea":"A925861","CodigoResponsavel":245,"Email":null,"DescTipoDocumento":null,"ParecerDeISS":"Responsabilidade isenta de CFM","EstaIrregular":false}],"Interessados":[{"Id":54618,"DescricaoIPTU":"16.065.0002","IdProjeto":33555,"Nome":"PAULO REINALDO ROCHET","Email":"paulo.rochet@gmail.com","CPFCNPJ":12646911149,"Principal":true,"DDD":"11","Telefone":"98459-7858","Logradouro":"IRACEMA LOURENÇO BRANDO","Numero":"937","Complemento":null,"Bairro":"MARCO LEITE","CodigoMunicipio":0,"Municipio":"JUNDIAÍ","Cep":13215766,"UF":"SP","DataCancelamento":null,"DataCadastro":"\/Date(1695783600000)\/","PossuiCadastroProfissionalValido":null,"CodigoVinculo":7410,"DescricaoVinculo":"PROPRIETÁRIO(A)","Vinculo":{"Id":7410,"Descricao":"PROPRIETÁRIO(A)"},"DataCancelamentoGrid":null,"CPFCNPJTexto":null,"CepTexto":null,"PossuiCadastroMunicipe":false}],"SolicitacaoPermiteIncra":true,"SolicitacaoPermiteEditarDadosProprietario":false,"ReadOnly":false,"LocaisRestritos":null,"MapaPlanoDiretor":null,"ListLeiZoneamento":null,"IdLeiZoneamento":null,"IdLeiZoneamentoSetor":null,"IdLeiZoneamentoVia":null,"Prioridade":null,"ProprietarioInteressado":"PAULO REINALDO ROCHET","CodigoNovoFluxo":null,"FluxoOutrasSolicitacoes":false,"FluxoAprovacaoProjeto":false,"IdUsuario":430,"ExigeVinculoComProfissional":false,"ModelAtualizadoNaPassagemDePaginas":false,"AlterouAssunto":false,"FlagMadeiraOrigemNativa":"F","FluxoExigeJustificativa":false,"JustificativaSolicitacao":null,"ExibirCampoJustificativa":false,"ResponsabilidadesObrigatorias":[{"Id":270,"Responsabilidade":"RESPONSÁVEL PELO PROJETO","Excluir":false,"NaoExibir":false}],"JustificativaFinalizacaoEtapaManual":"","ProjetosSubstituidos":[],"AreasProjetosExistentes":[],"PermiteIncra":true,"MascaraIPTU":"99.999.9999","FrentesEsquinasProjetos":[],"FlagUtilizaSistemaPAreaPermeavel":"F","AreaPermeavelProjeto":0,"AreaPermeavelProjetoString":"0,00","Solicitante":{"Nome":"ALEXANDERS GONÇALVES DA SILVA","Email":"almaju@uol.com.br","CPFCNPJ":3360042816,"DDD":"11  ","Telefone":"999140320","TipoPessoa":70,"CPFCNPJFormatado":"033.600.428-16","TipoCadastro":80,"TipoCadastroDescricao":"Profissional"},"ProjetoUsos":[],"DescricaoApelido":null,"UsuarioSIIMLogadoEoProfissionalDoProjeto":false,"UsuarioSIIMLogadoEoInteressadoDoProjeto":false,"ProjetoEmModoConsulta":false,"MotivoProjetoEmModoConsulta":"Usuário logado é INTERESSADO ou PROFISSIONAL do projeto em aberto","HtmlTituloModoConsulta":" \u003cspan ng-show=\"Model.ProjetoEmModoConsulta\" bs-tooltip data-original-title=\"{{ Model.MotivoProjetoEmModoConsulta}}\"\r\n                          data-toggle=\"tooltip\" data-placement=\"right\" class=\"btn btn-info badge\"\u003eMODO CONSULTA\u003c/span\u003e"};
+    var urlAbrirModalCamposAdicionaisNovo = '/PMJ/APROVE/Projeto/AbrirModalCamposAdicionaisNovo';
+    var urlAbrirModalEndereco = '/PMJ/APROVE/Projeto/AbrirModalEndereco';
+    var urlAbrirModalInteressado = '/PMJ/APROVE/Projeto/AbrirModalInteressado';
+    var urlGetProcessosCM = '/PMJ/APROVE/Projeto/GetProcessosCMPorIptu';
+    var urlAbrirModalAssunto = '/PMJ/APROVE/Projeto/AbrirModalAssunto';
+    var urlAbrirModalAssuntoNovo = '/PMJ/APROVE/Projeto/AbrirModalAssuntoNovo';
+    var urlAbrirModalResponsavel = '/PMJ/APROVE/Projeto/AbrirModalResponsavel';
+    var urlAbrirModalNovoResponsavel = '/PMJ/APROVE/Projeto/AbrirModalNovoResponsavel';
+    var urlAbrirMapa = '/PMJ/APROVE/Projeto/Mapa';
+    var urlAbrirModalCapaIPTU = '/PMJ/APROVE/Projeto/AbrirModalCapaIPTU';
+    var urlAbrirMapaPlanoDiretor = '/PMJ/APROVE/Projeto/AbrirMapaPlanoDiretor';
+    var urlGetLeiZoneamentoSetor = '/PMJ/APROVE/Projeto/GetLeiZoneamentoSetor';
+    var urlGetLeiZoneamentoVia = '/PMJ/APROVE/Projeto/GetLeiZoneamentoVia';
+    var urlGetProjetosMesmoContribuinte = '/PMJ/APROVE/Projeto/GetProjetosMesmoContribuinte';
+    var urlInformacoesProjeto = '/PMJ/APROVE/Projeto/InformacoesProjeto';
+    var urlVoltarAnalise = '/PMJ/APROVE/Analise/Analise';
+    var urlVoltarHome = '/PMJ/APROVE/';
+    var isModal = false;
+    var urlAnterior = 'https://siim21.cijun.sp.gov.br/PMJ/APROVE/PROJETO/INFORMACOESPROJETO?codigoProjeto=27634&codigoTipoAnalise=null&codigoFluxo=170&codigoEtapa=465';
+    var possuiAcesso = false;
+    var urlConsultaRapida = '/PMJ/APROVE/ConsultaDetalhada';
+    var urlDocumentosProjeto = '/PMJ/APROVE/Analise/Documentos';
+    var urlHistoricoProjeto = '/PMJ/APROVE/Projeto/HistoricoProjeto';
+    var urlAnalise = '/PMJ/APROVE/Analise/Analise';
+    var _validaResponsavelSolicitante = 'true';
+    var urlGetZoneamento ='/PMJ/APROVE/Projeto/GetListLeiZoneamento';
+    var urlObterMapaPlanoDiretor ='/PMJ/APROVE/Projeto/ObterMapaPlanoDiretor';
+    var urlObterLocaisRestritosIPTU = '/PMJ/APROVE/Projeto/GetLocaisRestritosIPTUAsync';
+    var urlGetSituacaoProfissionalNoProjeto = '/PMJ/APROVE/Projeto/GetParecerISSeCFMProfissionalProjetoAsync';
+    var urlCarregarComboLiberacao = '/PMJ/APROVE/Projeto/CarregarComboLiberacao';
+    var urlCarregarComboUso = '/PMJ/APROVE/Projeto/CarregarComboUso';
+    var urlListarTipoUsoProjeto = '/PMJ/APROVE/Projeto/CarregarComboTipoUsoProjeto';
+    var urlGetIPTUAsync = '/PMJ/APROVE/Projeto/GetIPTUAsync';
+    var urlConsultaCEP = '/PMJ/APROVE/Projeto/ConsultaCEPAsync';
+    var urlPreparaComboMunicipios = '/PMJ/APROVE/Profissional/GetMunicipiosEstadoAsync';
+    var urlGetEstados = '/PMJ/APROVE/Profissional/GetEstadosAsync';
+    var urlModalConsultaCep = '/PMJ/APROVE/Projeto/AbrirModalConsultaCepAsync';
+    var MascaraIPTU = '99.999.9999';
+    var _projetoObrigaIptuInteressado = 'N';
+    var _vinculos = '[{"Id":7410,"Descricao":"PROPRIETÁRIO(A)"},{"Id":7411,"Descricao":"USUFRUTUÁRIO(A)"},{"Id":7423,"Descricao":"INTERESSADO(A)"},{"Id":7430,"Descricao":"LOCATÁRIO(A)"},{"Id":7435,"Descricao":"CONCESSIONÁRIA"},{"Id":7475,"Descricao":"INCORPORADOR(A)"},{"Id":7477,"Descricao":"CESSIONÁRIO(A)"},{"Id":7490,"Descricao":"INVENTARIANTE"}]';
+    var exibirBotaoFinalizarManual = false;
+    var urlFinalizarEtapaManual = '/PMJ/APROVE/Projeto/FinalizarEtapaManual';
+    var _semIPTUPrincipal = 'False';
+    var urlCarregarListaTipoSoma = '/PMJ/APROVE/Projeto/CarregarListaTipoSoma';
+</script>
+<script src="/PMJ/APROVE/Scripts/Projeto/InformacoesProjetoController.js?v154"></script>
+<style>
+    #barra-alerta_modal_interessado > .alert {
+        margin-top: 1.5rem;
+        margin-bottom: -1rem;
+    }
+</style>
+<div ng-controller="InformacoesProjetoController" class="ng-scope">
+<form action="/PMJ/APROVE/Projeto/EditarAsync" class="formValidation ng-pristine ng-valid ng-valid-maxlength ng-valid-email ng-valid-minlength" id="dadosGeraisForm" method="post" name="dadosGeraisForm" novalidate="novalidate"><input name="__RequestVerificationToken" type="hidden" value="5bTSvfZgxWiVKXtQdjBZzujN-h3KpMBAihE_QX6qWeERQrhnKYfWbdhhRZFCKsuhF9btn-jeYmPmDyM1Szq_EypmAZ0yWyYupJlu7b8d6cI1" autocomplete="off" style=""><input data-val="true" data-val-date="The field DataAprovacao must be a date." id="DataAprovacao" name="DataAprovacao" type="hidden" value="07/11/2025 00:00:00" autocomplete="off" style="">        <div id="barra-botoes" class="container bg-white">
+            <div class="d-flex py-3">
+                <h1 class="h3 my-auto">
+                    Informações do projeto e obra  <span ng-show="Model.ProjetoEmModoConsulta" bs-tooltip="" data-original-title="Usuário logado é INTERESSADO ou PROFISSIONAL do projeto em aberto" data-toggle="tooltip" data-placement="right" class="btn btn-info badge ng-hide">MODO CONSULTA</span>
+                </h1>
+                <div class="ml-auto my-auto">
+                        <button type="button" name="FinalizarEtapaManualmente" ng-show="exibirBotaoFinalizarEtapaManual &amp;&amp; !Model.ProjetoEmModoConsulta" ng-click="AbrirModalFinalizarEtapaManualmente();" class="ml-2 btn btn-primary ng-hide" accesskey="F"><u>F</u>inalizar etapa</button>
+<!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->                        <button type="button" name="Voltar" ng-click="Voltar();" class="ml-2 btn btn-light" accesskey="V"><u>V</u>oltar para consulta</button>
+                </div>
+            </div>
+        </div>
+        <div>
+<div id="CabecalhoProjeto" ng-controller="CabecalhoProjetoController" class="ng-scope">
+    <script>
+        var modelCabecalho =  {"NomeSolicitante":"ALEXANDERS GONÇALVES DA SILVA","ResponsavelEtapaAtual":"FABIO GUILHERME GARCIA","NomeFluxo":"ANÁLISE CONTRIBUINTE IMOBILIÁRIO SOLIC. ALVARÁ","NomeEtapaAtual":"VERIFICAR DÉBITOS/LANÇAMENTO E NOTIFICAÇÃO","StatusEtapaAtual":"Deferido","CodigoProjeto":33555,"CodigoFluxo":199,"CodigoEtapaAtual":1136,"DescricaoNumProjeto":"SAEPRO2023/791","PercentualRealizado":100,"EtapasFluxo":[{"id":848,"description":"ANÁLISE DO TÍTULO DE PROPRIEDADE","active":"","spanClass":"","view":"Analise/Analise","tipoAnalise":143,"ordem":1,"emAberto":false,"finalizada":true},{"id":849,"description":"VISTORIA DA EDIFICAÇÃO (DFI)","active":"","spanClass":"","view":"Analise/Analise","tipoAnalise":144,"ordem":2,"emAberto":false,"finalizada":true},{"id":850,"description":"ANÁLISE/AUDITORIA DE TRIBUTAÇÃO","active":"","spanClass":"","view":"Analise/Analise","tipoAnalise":145,"ordem":3,"emAberto":false,"finalizada":true},{"id":1136,"description":"VERIFICAR DÉBITOS/LANÇAMENTO E NOTIFICAÇÃO","active":"","spanClass":"","view":"Analise/Analise","tipoAnalise":161,"ordem":4,"emAberto":false,"finalizada":true}],"AnalisesAvulsasPendentes":null,"DataDistribuicao":"07/11/2025","IndicacaoCor":"success","IndicacaoTexto":"APROVADO"};
+        var urlAnulacaoProjeto = '/PMJ/APROVE/Projeto/AnulacaoProjeto';
+        var urlEtapasFluxo = '/PMJ/APROVE/Projeto/EtapasFluxo';
+        var urlGenerica = '/PMJ/APROVE/Controller/Action';
+        var urlProjetosRelacionados = '/PMJ/APROVE/Projeto/ObterProjetosRelacionados';
+        var urlModalHierarquiaProjetos = '/PMJ/APROVE/HierarquiaProjetos/MontarHierarquiaProjetos';
+        var urlInformacoesProjeto = '/PMJ/APROVE/Projeto/InformacoesProjeto';
+        var urlDadosProjeto = '/PMJ/APROVE/Projeto/DadosProjeto';
+        var urlAnexosAvulsos = '/PMJ/APROVE/DocumentoAvulsoProjetoObra';
+        var urlAnaliseAvulsa = '/PMJ/APROVE/Analise/AvulsaLista';
+        var urlEtapaAvulsa = '/PMJ/APROVE/EtapaAvulsa/EtapaAvulsa';
+        var urlExcluirTramiteNaoIniciado = '/PMJ/APROVE/EtapaAvulsa/AbrirModalExcluirTramiteNaoIniciado';
+        var urlDespachos = '/PMJ/APROVE/Projeto/Despacho';
+        var urlEdicaoFluxo = '/PMJ/APROVE/Fluxo/Editar';
+        var urlValidarCriacaoEtapaAvulsa = '/PMJ/APROVE/EtapaAvulsa/ValidarCriacaoDeEtapaAvulsa';
+        var urlAbrirAtribuicao = '/PMJ/APROVE/DistribuicoesProjetos/Carregar';
+        var urlNotificacaoEtapaStatusProjeto = '/PMJ/APROVE/MensagemUsuario/NotificacaoEmail';
+        var urlModalAlteraStatusFluxoProjeto = '/PMJ/APROVE/FluxoProjeto/AbrirModalAlteraStatusFluxoProjeto';
+    </script>
+    <script src="/PMJ/APROVE/Scripts/CabecalhoProjetoController.js?v18"></script>
+    <script src="https://src.cijun.sp.gov.br/js/highcharts/6.1.0/code/highcharts.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/js/highcharts/6.1.0/code/highcharts-more.js" type="text/javascript"></script>
+    <script src="https://src.cijun.sp.gov.br/js/highcharts/6.1.0/code/modules/solid-gauge.js" type="text/javascript"></script>
+    <script type="text/javascript">
+    $(document).ready(function () {
+        var myChart = Highcharts.chart('grafico', {
+            chart: {
+                type: 'solidgauge',
+                height: '95%'
+            },
+            title: {
+                text: ''
+            },
+            tooltip: {
+                enabled: false
+            },
+            pane: {
+                startAngle: 0,
+                endAngle: 360,
+                background: [{
+                    outerRadius: '115%',
+                    innerRadius: '80%',
+                    backgroundColor: Highcharts.Color(Highcharts.getOptions().colors[0]).setOpacity(0.3).get(),
+                    borderWidth: 0
+                }]
+            },
+            yAxis: {
+                min: 0,
+                max: 100,
+                lineWidth: 0,
+                tickPositions: [],
+            },
+            plotOptions: {
+                solidgauge: {
+                    linecap: 'round',
+                    stickyTracking: false,
+                    rounded: true,
+                    dataLabels: {
+                        y: -16,
+                        borderWidth: 0,
+                        style: {
+                            fontSize: '18px',
+                            fontWeight: 500
+                        },
+                        format: '{y}%'
+                    }
+                }
+            },
+            series: [{
+                name: 'Andamento',
+                data: [{
+                    color: Highcharts.getOptions().colors[0],
+                    radius: '115%',
+                    innerRadius: '80%',
+                    y: 100
+                }]
+            }],
+            credits: {
+                enabled: false
+            }
+        });
+        });
+    </script>
+
+    <style>
+        #dropdownCabecalho {
+            font-size: 1.6rem;
+            padding: 0 1rem;
+        }
+
+        #s-status .card {
+            height: 9.3rem;
+            word-wrap: normal;
+        }
+
+        .link {
+            cursor: pointer;
+        }
+    </style>
+
+    <div class="d-flex">
+        <a class="collapsible text-dark" ng-class="{collapsed: !ExibeCard}" ng-click="MostrarEsconderCard()" href="#" role="button" aria-expanded="true" aria-controls="s-interessados">
+            <h2 class="ng-binding">
+                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span><span class="d-none">Mostrar status</span>
+                Projeto SAEPRO2023/791
+            </h2>
+        </a>
+
+        <div class="dropdown ml-auto">
+            <a id="dropdownCabecalho" class="btn btn-outline-primary" href="#" role="button" data-toggle="dropdown" aria-expanded="false" aria-label="Opções do projeto" aria-haspopup="true">
+                <span class="fas fa-ellipsis-v"></span>
+            </a>
+
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownCabecalho">
+                <a class="dropdown-item" href="" ng-click="AbrirDespachos(Model.CodigoProjeto, Model.CodigoFluxo)">Despacho</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AbrirAnexosAvulsos(Model.CodigoProjeto)">Documentos anexos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item text-danger" href="" ng-click="AbrirAnulacaoProjeto(Model.CodigoProjeto)">Indeferimento</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AbrirEtapaAvulsa(Model.CodigoProjeto, Model.CodigoFluxo, Model.CodigoEtapaAtual)">Trâmite (etapa avulsa)</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AcessarDistribuicaoDoProjeto(Model.CodigoProjeto, Model.CodigoFluxo)">Atribuir projeto</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AbrirExclusaoTramiteNaoIniciada(Model.CodigoProjeto, Model.CodigoFluxo, Model.CodigoEtapaAtual)">Excluir trâmite não iniciado</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AbrirHierarquiaProjetos(Model.CodigoProjeto, Model.DescricaoNumProjeto)">Hierarquia dos projetos</a>
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="" ng-click="AbrirNotificacaoEtapaStatusProjeto(Model.CodigoProjeto, Model.CodigoFluxo)">Notificação por e-mail</a>
+            </div>
+        </div>
+    </div>
+
+    <hr style="height: 3px" class="bg-success my-1" data-original-title="APROVADO" bs-tooltip="">
+
+    <section id="s-status" class="pb-3 mt-3 border-bottom border-dark collapse show" ng-class="{show: ExibeCard}">
+        <div class="row">
+            <div class="col-lg-2">
+                <div class="card card-body border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="ALEXANDERS GONÇALVES DA SILVA">
+                    <h5 class="card-title text-info">Solicitante</h5>
+                    <div id="cardNomeSolicitante"><span class="card-text text-nowrap">ALEXANDERS</span> <p class="card-text text-truncate text-nowrap"> GONÇALVES DA SILVA</p></div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="card card-body border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="FABIO GUILHERME GARCIA">
+                    <h5 class="card-title text-info">Atribuído a</h5>
+                    <div id="cardResponsavelEtapaAtual"><span class="card-text text-nowrap">FABIO</span> <p class="card-text text-truncate text-nowrap"> GUILHERME GARCIA</p></div>
+                    <p class="card-text text-truncate text-nowrap ng-binding">07/11/2025</p>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="card card-body border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="ANÁLISE CONTRIBUINTE IMOBILIÁRIO SOLIC. ALVARÁ">
+                    <h5 class="card-title text-info">Fluxo</h5>
+                    <div id="cardNomeFluxo"><span class="card-text text-nowrap">ANÁLISE</span> <p class="card-text text-truncate text-nowrap"> CONTRIBUINTE IMOBILIÁRIO SOLIC. ALVARÁ</p></div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="card card-body border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="VERIFICAR DÉBITOS/LANÇAMENTO E NOTIFICAÇÃO">
+                    <h5 class="card-title text-info">Etapa atual</h5>
+                    <div id="cardNomeEtapaAtual"><span class="card-text text-nowrap">VERIFICAR</span> <p class="card-text text-truncate text-nowrap"> DÉBITOS/LANÇAMENTO E NOTIFICAÇÃO</p></div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="card card-body border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Deferido">
+                    <h5 class="card-title text-info">Status</h5>
+                    <div id="cardStatusEtapaAtual"><p class="card-text text-truncate text-nowrap">Deferido</p></div>
+                </div>
+            </div>
+
+            <div class="col-lg-2">
+                <div class="card card-body p-2 border-info text-center" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="Andamento">
+                    <div id="grafico" data-highcharts-chart="0"><div id="highcharts-4sn9abs-0" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 142px; height: 134.9px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="142" height="134.9" viewBox="0 0 142 134.9"><desc>Created with Highcharts 6.1.0</desc><defs><clipPath id="highcharts-4sn9abs-1"><rect x="0" y="0" width="122" height="110" fill="none"></rect></clipPath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="142" height="134.9" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="10" width="122" height="110"></rect><g class="highcharts-pane-group"><path fill="rgba(124,181,236,0.3)" d="M 71 11.237499999999997 A 53.7625 53.7625 0 1 1 70.9462375089604 11.23752688124776 M 70.96260000623332 27.600018699998444 A 37.4 37.4 0 1 0 71 27.6 " class="highcharts-pane "></path></g><g class="highcharts-grid highcharts-yaxis-grid "></g><rect fill="none" class="highcharts-plot-border" x="10" y="10" width="122" height="110"></rect><g class="highcharts-axis highcharts-yaxis "><path fill="none" class="highcharts-axis-line" d="M 71 18.25 A 46.75 46.75 0 1 1 70.95325000779164 18.25002337499805 M 71 65 A 0 0 0 1 0 71 65 "></path></g><g class="highcharts-data-labels highcharts-series-0 highcharts-solidgauge-series  highcharts-tracker" visibility="visible" transform="translate(10,10) scale(1 1)"><g class="highcharts-label highcharts-data-label highcharts-data-label-color-0 " transform="translate(33,39)"><text x="5" style="font-size:18px;font-weight:500;color:#000000;fill:#000000;" y="22"><tspan x="5" y="22" class="highcharts-text-outline" fill="#FFFFFF" stroke="#FFFFFF" stroke-width="2px" stroke-linejoin="round" style="">100%</tspan><tspan x="5" y="22">100%</tspan></text></g></g><g class="highcharts-series-group"><g class="highcharts-series highcharts-series-0 highcharts-solidgauge-series  highcharts-tracker" transform="translate(10,10) scale(1 1)" clip-path="url(#highcharts-4sn9abs-1)"><path fill="#7cb5ec" d="M 61 1.2374999999999972 A 53.7625 53.7625 0 1 1 60.94623750896039 1.23752688124776 A 8.181250000000002 8.181250000000002 0 1 1 60.962600006233316 17.600018699998444 A 37.4 37.4 0 1 0 61 17.6 A 8.181250000000002 8.181250000000002 0 1 1 61 1.2374999999999972 " class="highcharts-point highcharts-color-0" sweep-flag="0" stroke-linecap="round" stroke-linejoin="round" rounded="true"></path></g><g class="highcharts-markers highcharts-series-0 highcharts-solidgauge-series " transform="translate(10,10) scale(1 1)" clip-path="none"></g></g><text x="71" text-anchor="middle" class="highcharts-title" style="color:#333333;font-size:18px;fill:#333333;" y="24"></text><text x="71" text-anchor="middle" class="highcharts-subtitle" style="color:#666666;fill:#666666;" y="24"></text><g class="highcharts-legend"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="8" height="8" visibility="hidden"></rect><g><g></g></g></g><g class="highcharts-axis-labels highcharts-yaxis-labels "></g></svg></div></div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- ngIf: ExibeCard && ProjetosRelacionados.length > 0 --><div class="text-center ng-scope" ng-if="ExibeCard &amp;&amp; ProjetosRelacionados.length &gt; 0">
+            <hr>
+            <h5 class="font-weight-bold text-dark">Projetos relacionados</h5>
+            <!-- ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-secondary mx-2 text-light" data-toggle="tooltip" title="SUBSTITUÍDO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 -  APROVAÇÃO DE PROJETO SEM ALVARÁ</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-secondary mx-2 text-light" data-toggle="tooltip" title="SUBSTITUÍDO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 - SOLICITAÇÃO DE ALVARÁ DE EXECUÇÃO</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-danger mx-2 text-light" data-toggle="tooltip" title="INDEFERIMENTO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 -  SOLICITAÇÃO DE HABITE-SE</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-success mx-2 text-light" data-toggle="tooltip" title="APROVADO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 -  SUBSTITUIÇÃO DE PROJETO COM ALVARÁ</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-success mx-2 text-light" data-toggle="tooltip" title="APROVADO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 -  SOLICITAÇÃO DE HABITE-SE</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index --><a href="#" class="badge badge-pill bg-danger mx-2 text-light" data-toggle="tooltip" title="INDEFERIMENTO" ng-repeat="projeto in ProjetosRelacionados track by $index" ng-click="AbrirProjetoRelacionado(projeto)">SAEPRO2023/791 -  SOLICITAÇÃO DE HABITE-SE</a><!-- end ngRepeat: projeto in ProjetosRelacionados track by $index -->
+        </div><!-- end ngIf: ExibeCard && ProjetosRelacionados.length > 0 -->
+    </section>
+
+    <ol class="breadcrumb-prog my-4" aria-label="breadcrumb">
+        <!-- ngRepeat: item in breadcrumb.itens --><li class="done selected" ng-repeat="item in breadcrumb.itens" ng-click="item.view &amp;&amp; AcessarTela(item);">
+            <span class="step link"></span>
+            ANÁLISE DO TÍTULO DE PROPRIEDADE
+        </li><!-- end ngRepeat: item in breadcrumb.itens --><li class="done" ng-repeat="item in breadcrumb.itens" ng-click="item.view &amp;&amp; AcessarTela(item);">
+            <span class="step link"></span>
+            VISTORIA DA EDIFICAÇÃO (DFI)
+        </li><!-- end ngRepeat: item in breadcrumb.itens --><li class="done" ng-repeat="item in breadcrumb.itens" ng-click="item.view &amp;&amp; AcessarTela(item);">
+            <span class="step link"></span>
+            ANÁLISE/AUDITORIA DE TRIBUTAÇÃO
+        </li><!-- end ngRepeat: item in breadcrumb.itens --><li class="done last" ng-repeat="item in breadcrumb.itens" ng-click="item.view &amp;&amp; AcessarTela(item);">
+            <span class="step link"></span>
+            VERIFICAR DÉBITOS/LANÇAMENTO E NOTIFICAÇÃO
+        </li><!-- end ngRepeat: item in breadcrumb.itens -->
+    </ol>
+
+</div>
+
+            <div>
+                    <h3 class="text-center mb-3"><span class="badge badge-warning">Etapa: DEFERIDO em 27/09/2023</span></h3>
+            </div>
+
+            <div class="btn-group w-100 justify-content-center mb-4 mt-1 ng-hide" role="group" aria-label="Ações do projeto" ng-show="MostrarBotoesNavegacao">
+                <button type="button" class="btn btn-primary">Dados do projeto</button>
+                <!-- ngIf: codigoTipoAnalise !== '' && codigoTipoAnalise !== null -->
+                <button ng-click="AbrirHistoricoProjeto()" type="button" class="btn btn-outline-primary">Histórico</button>
+                <!-- ngIf: codigoTipoAnalise !== '' && codigoTipoAnalise !== null -->
+            </div>
+
+            <div class="my-4">
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-endereco" role="button" aria-expanded="true" aria-controls="s-endereco">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Endereços
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+
+                    <div id="s-endereco" class="px-2 border-top collapse show">
+                        <!-- ngRepeat: endereco in Model.ProjetoIPTUs| filter:{ Principal:true} --><div ng-repeat="endereco in Model.ProjetoIPTUs| filter:{ Principal:true}" class="ng-scope">
+                            <div class="row mt-1 mb-2">
+                                <div class="col-md-3">
+                                    <label for="iptu">IPTU</label>
+                                    <span id="iptu" class="form-text text-muted ng-binding">16.065.0002         </span>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="cidade">Cidade</label>
+                                    <span id="cidade" class="form-text text-muted ng-binding">JUNDIAI</span>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="estado">Estado</label>
+                                    <span id="estado" class="form-text text-muted ng-binding">SP</span>
+                                </div>
+
+                                <div class="col-md-2">
+                                    <label for="cep">CEP</label>
+                                    <span id="cep" class="form-text text-muted ng-binding">13.215-756</span>
+                                </div>
+
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="NomeTipoLogradouro">Tipo</label>
+                                    <span id="NomeTipoLogradouro" class="form-text text-muted ng-binding">R </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="logradouro">Logradouro</label>
+                                    <span id="logradouro" class="form-text text-muted ng-binding">LEONARDO AIELLO,&nbsp;123 </span>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <label for="bairro">Bairro</label>
+                                    <span id="bairro" class="form-text text-muted ng-binding">MARCO LEITE                                                                     </span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-3">
+                                    <label for="Quadra">Quadra</label>
+                                    <span id="Quadra" class="form-text text-muted ng-binding">29</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="Lote">Lote</label>
+                                    <span id="Lote" class="form-text text-muted ng-binding">02</span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="complemento">Complemento</label>
+                                    <span id="complemento" class="form-text text-muted text-truncate ng-binding"></span>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="loteamento">Loteamento</label>
+                                    <span id="loteamento" class="form-text text-muted ng-binding">HORTO FLORESTAL</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2" ng-show="endereco.FrentesEsquinas &amp;&amp; endereco.FrentesEsquinas.length &gt; 0">
+                                <div class="col-12">
+                                    <label for="esquinas_frentes">Esquinas/Frentes</label>
+                                    <!-- ngRepeat: item in endereco.FrentesEsquinas.split(',') --><div ng-repeat="item in endereco.FrentesEsquinas.split(',')" class="ng-scope">
+                                        <span id="esquinas_frentes0" class="form-text text-muted text-uppercase ng-binding">NÃO INFORMADO</span>
+                                    </div><!-- end ngRepeat: item in endereco.FrentesEsquinas.split(',') -->
+                                </div>
+                            </div>
+                            <!-- ngIf: $odd -->
+                        </div><!-- end ngRepeat: endereco in Model.ProjetoIPTUs| filter:{ Principal:true} -->
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-mesmocontribuinte" role="button" aria-expanded="true" aria-controls="s-mesmocontribuinte">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Projetos do mesmo contribuinte
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-mesmocontribuinte" class="collapse show">
+                        <div class="table-responsive overflow-auto" style="max-height: 350px">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col">Identificação</th>
+                                        <th scope="col">Projeto</th>
+                                        <th scope="col">Tipo de projeto</th>
+                                        <th scope="col" class="text-center">Entrada</th>
+                                        <th scope="col">Etapa atual - Status</th>
+                                        <th class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: item in ListProjetosMesmoContribuinte --><tr ng-repeat="item in ListProjetosMesmoContribuinte" class="ng-scope">
+                                        <td class="ng-binding">IPTU</td>
+                                        <td class="ng-binding">16.030.0021</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="SUBSTITUÍDO" class="ng-binding table-secondary">SAEPRO2020/2219</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="SUBSTITUÍDO" class="ng-binding table-secondary"> APROVAÇÃO DE PROJETO COM ALVARÁ</td>
+                                        <td class="text-center ng-binding">11/11/2020</td>
+                                        <td bs-tooltip="" data-original-title="" data-toggle="tooltip" data-placement="right">
+                                            <!-- ngRepeat: item in item.EtapasStatusAtuais track by $index --><p ng-repeat="item in item.EtapasStatusAtuais track by $index" class="ng-binding ng-scope">
+                                                SOLICITAÇÃO CONCLUÍDA - Realizado
+                                            </p><!-- end ngRepeat: item in item.EtapasStatusAtuais track by $index -->
+                                        </td>
+                                        <td class="text-center text-nowrap">
+                                            <!-- ngIf: PossuiAcessoEtapa -->
+                                        </td>
+                                    </tr><!-- end ngRepeat: item in ListProjetosMesmoContribuinte --><tr ng-repeat="item in ListProjetosMesmoContribuinte" class="ng-scope">
+                                        <td class="ng-binding">IPTU</td>
+                                        <td class="ng-binding">16.065.0002</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="SUBSTITUÍDO" class="ng-binding table-secondary">SAEPRO2023/791</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="SUBSTITUÍDO" class="ng-binding table-secondary"> APROVAÇÃO DE PROJETO SEM ALVARÁ</td>
+                                        <td class="text-center ng-binding">13/03/2023</td>
+                                        <td bs-tooltip="" data-original-title="" data-toggle="tooltip" data-placement="right">
+                                            <!-- ngRepeat: item in item.EtapasStatusAtuais track by $index --><p ng-repeat="item in item.EtapasStatusAtuais track by $index" class="ng-binding ng-scope">
+                                                SOLICITAÇÃO CONCLUÍDA - Realizado
+                                            </p><!-- end ngRepeat: item in item.EtapasStatusAtuais track by $index -->
+                                        </td>
+                                        <td class="text-center text-nowrap">
+                                            <!-- ngIf: PossuiAcessoEtapa -->
+                                        </td>
+                                    </tr><!-- end ngRepeat: item in ListProjetosMesmoContribuinte --><tr ng-repeat="item in ListProjetosMesmoContribuinte" class="ng-scope">
+                                        <td class="ng-binding">IPTU</td>
+                                        <td class="ng-binding">16.065.0002</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="APROVADO" class="ng-binding table-success">SAEPRO2023/2008</td>
+                                        <td ng-class="'table-'+item.IndicacaoCor" data-toggle="tooltip" title="APROVADO" class="ng-binding table-success">APROVAÇÃO DE TERRAPLENAGEM COM ALVARÁ</td>
+                                        <td class="text-center ng-binding">06/06/2023</td>
+                                        <td bs-tooltip="" data-original-title="" data-toggle="tooltip" data-placement="right">
+                                            <!-- ngRepeat: item in item.EtapasStatusAtuais track by $index --><p ng-repeat="item in item.EtapasStatusAtuais track by $index" class="ng-binding ng-scope">
+                                                SOLICITAÇÃO CONCLUÍDA - Realizado
+                                            </p><!-- end ngRepeat: item in item.EtapasStatusAtuais track by $index -->
+                                        </td>
+                                        <td class="text-center text-nowrap">
+                                            <!-- ngIf: PossuiAcessoEtapa -->
+                                        </td>
+                                    </tr><!-- end ngRepeat: item in ListProjetosMesmoContribuinte -->
+                                </tbody>
+                            </table>
+                            <div id="carregandoProjetosMesmoContribuinteOK" class="alert alert-warning text-center" role="alert" style="display: none;">
+                                Nenhum registro encontrado.
+                            </div>
+                            <div id="carregandoProjetosMesmoContribuinte" class="alert alert-info text-center" role="alert" style="display: none;">
+                                <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-processoCM" role="button" aria-expanded="true" aria-controls="s-processoCM">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Processos anteriores do IPTU (SAEPRO antigo)
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-processoCM" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Número do processo/Projeto</th>
+                                        <th scope="col">Interessado </th>
+                                        <th scope="col">Principal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">9235/2013 </td>
+                                        <td class="ng-binding">FLORESTAL INCORPORAÇÕES LTDA</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">26144/2013 </td>
+                                        <td class="ng-binding">FLORESTAL INCORPORAÇÕES LTDA.</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">26146/2013 </td>
+                                        <td class="ng-binding">FLORESTAL INCORPORAÇÕES LTDA.</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">26954/2014 </td>
+                                        <td class="ng-binding">FLORESTAL INCORPORAÇÕES LTDA</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">32399/2014 </td>
+                                        <td class="ng-binding">ANTÔNIO PREGELI NETO</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM --><tr ng-repeat="CM in ProcessosCM" class="ng-scope">
+                                        <td class="ng-binding">33056/2014 </td>
+                                        <td class="ng-binding">FLORESTAL INCORPORAÇÕES LTDA</td>
+                                        <td class="ng-binding">SIM</td>
+                                    </tr><!-- end ngRepeat: CM in ProcessosCM -->
+                                </tbody>
+                            </table>
+                            
+                            <div id="carregandoProjetosCMOK" class="alert alert-warning text-center" role="alert" style="display: none;">
+                                Nenhum registro encontrado.
+                            </div>
+                            <div id="carregandoProjetosCM" class="alert alert-info text-center" role="alert" style="display: none;">
+                                <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-solicitante" role="button" aria-expanded="true" aria-controls="s-solicitante">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Solicitante
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-solicitante" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">CPF/CNPJ</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Fone</th>
+                                        <th scope="col">Tipo</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td class="ng-binding">ALEXANDERS GONÇALVES DA SILVA</td>
+                                        <td class="ng-binding">033.600.428-16</td>
+                                        <td class="ng-binding">almaju@uol.com.br</td>
+                                        <td class="ng-binding">11   999140320</td>
+                                        <td class="ng-binding">Profissional</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <!-- ngIf: (Model.Solicitante.Nome === '' || Model.Solicitante.Nome === null || Model.Solicitante.Nome === undefined) -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-interessados" role="button" aria-expanded="true" aria-controls="s-interessados">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Interessados
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+                    <div id="s-interessados" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col">CPF/CNPJ</th>
+                                        <th scope="col">Email</th>
+                                        <th scope="col">Fone</th>
+                                        <th scope="col">Vínculo</th>
+                                        <th scope="col">Principal</th>
+                                        <th class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: interessado in Model.Interessados --><tr ng-repeat="interessado in Model.Interessados" ng-show="!interessado.DataCancelamento" class="ng-scope">
+                                        <td class="ng-binding">PAULO REINALDO ROCHET</td>
+                                        <td class="ng-binding">126.469.111-49</td>
+                                        <td class="ng-binding">paulo.rochet@gmail.com</td>
+                                        <td class="ng-binding">11 98459-7858</td>
+                                        <td class="ng-binding">PROPRIETÁRIO(A)</td>
+                                        <td class="ng-binding">SIM</td>
+                                        <td class="text-center text-nowrap">
+                                            <button type="button" class="btn btn-sm btn-light" title="" bs-tooltip="" ng-click="AbrirModalInteressado($index)" ng-disabled="isModal" ng-show="!Model.ProjetoEmModoConsulta" data-original-title="Editar">
+                                                <span class="fas fa-pen" aria-hidden="true"></span>
+                                            </button>
+                                            <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+
+                                            <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                                        </td>
+                                    </tr><!-- end ngRepeat: interessado in Model.Interessados -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.Interessados) -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-iptu" role="button" aria-expanded="true" aria-controls="s-iptu">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Tipos de contribuinte
+                            </a>
+                        </h4>
+                        <button class="ml-auto mr-2 btn btn-outline-primary" type="button" ng-click="AbrirModalCapaIPTU();" ng-disabled="isModal">Capa do IPTU</button>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+                    <div id="s-iptu" class="collapse show">
+                        <!-- ngIf: SemIPTUPrincipal -->
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Tipo</th>
+                                        <th scope="col" class="text-center">Identificação</th>
+                                        <th scope="col">Endereço</th>
+                                        <th scope="col">Principal</th>
+                                        <th scope="col" class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: endereco in Model.ProjetoIPTUs --><tr ng-repeat="endereco in Model.ProjetoIPTUs" ng-show="!endereco.DataCancelamento" class="ng-scope">
+                                        <td class="ng-binding">IPTU</td>
+                                        <td class="text-center ng-binding">16.065.0002         </td>
+                                        <td class="ng-binding">LEONARDO AIELLO, 123,MARCO LEITE                                                                     13.215-756-JUNDIAI</td>
+                                        <td class="ng-binding">SIM  </td>
+                                        <td class="text-center text-nowrap">
+                                            <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                                            <button type="button" class="btn btn-sm btn-light" title="" ng-click="AbrirMapaPlanoDiretor(endereco.Descricao,endereco.DescricaoTipoContribuinte)" ng-disabled="isModal" bs-tooltip="" data-original-title="Plano Diretor">
+                                                <span class="fas fa-map" aria-hidden="true"></span>
+                                            </button>
+                                            <div class="btn-group">
+                                                <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                                                <div class="dropdown-menu">
+                                                    <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                                                    <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr><!-- end ngRepeat: endereco in Model.ProjetoIPTUs -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.ProjetoIPTUs) -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-local-restrito" role="button" aria-expanded="true" aria-controls="s-local-restrito">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Restritos
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-local-restrito" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Título</th>
+                                        <th scope="col">Endereço</th>
+                                        <th scope="col">Detalhes</th>
+                                        <th scope="col" class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <!-- ngIf: Model.LocaisRestritos.length > 0 -->
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.LocaisRestritos) && !carregandoLocaisRestritos -->
+                            <div id="carregandoLocaisRestritos" class="alert alert-info text-center" role="alert" ng-show="carregandoLocaisRestritos">
+                                <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-prof-responsavel" role="button" aria-expanded="true" aria-controls="s-prof-responsavel">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Profissionais responsáveis
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+
+                    <div id="s-prof-responsavel" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col"># Doc.</th>
+                                        <th scope="col">Tipo Doc.</th>
+                                        <th scope="col">Nome</th>
+                                        <th scope="col" class="text-center">Entrada</th>
+                                        <th scope="col" class="text-center">Saída</th>
+                                        <th scope="col" class="text-center">Data cancelamento</th>
+                                        <th scope="col">Responsabilidade</th>
+                                        <th scope="col">ART/RRT/TRT</th>
+                                        <th scope="col">Situação</th>
+                                        <th scope="col" class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: resp in Model.ProjetoResponsaveis --><tr ng-repeat="resp in Model.ProjetoResponsaveis" class="ng-scope">
+                                        <td class="ng-binding">A925861</td>
+                                        <td class="ng-binding">CAU</td>
+                                        <td class="ng-binding">ALEXANDERS GONÇALVES DA SILVA</td>
+                                        <td class="text-center ng-binding">27/09/2023</td>
+                                        <td class="text-center ng-binding"></td>
+                                        <td class="text-center ng-binding"></td>
+                                        <td class="ng-binding">
+                                            <!-- ngIf: !resp.DataSaida && resp.FlagProfissionalSolicitanteProj --><small aria-hidden="true" class="fas fa-star ng-scope" bs-tooltip="" title="" ng-if="!resp.DataSaida &amp;&amp; resp.FlagProfissionalSolicitanteProj" data-original-title="Responsável principal"></small><!-- end ngIf: !resp.DataSaida && resp.FlagProfissionalSolicitanteProj -->
+                                            RESPONSÁVEL PELO PROJETO
+                                        </td>
+                                        <td class="ng-binding">12827777</td>
+                                        <td>
+                                            <span class="input-group-addon ng-hide" ng-show="IndexParaBuscaIssCFM == $index">Buscando situação no projeto... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                                            <span ng-show="IndexParaBuscaIssCFM != $index" class="ng-binding">
+                                                Responsabilidade isenta de CFM
+                                            </span>
+                                        </td>
+                                        <td class="text-center text-nowrap">
+                                            <!-- ngIf: PossuiAcessoEtapa && !resp.DataSaida && !Model.ProjetoEmModoConsulta -->
+
+                                            <!-- ngIf: PossuiAcessoEtapa && !resp.DataSaida && !Model.ProjetoEmModoConsulta -->
+
+                                            <!-- ngIf: PossuiAcessoEtapa && !resp.DataSaida && !resp.FlagProfissionalSolicitanteProj && !Model.ProjetoEmModoConsulta -->
+                                            <!-- ngIf: PossuiAcessoEtapa && resp.DataSaida && !Model.ProjetoEmModoConsulta -->
+
+                                        </td>
+                                    </tr><!-- end ngRepeat: resp in Model.ProjetoResponsaveis -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: !Model.ProjetoResponsaveis || Model.ProjetoResponsaveis.length === 0 -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-assunto" role="button" aria-expanded="true" aria-controls="s-assunto">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Assuntos
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+
+                    <div id="s-assunto" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Descrição</th>
+                                        <th scope="col" class="text-right">Metragem</th>
+                                        <th scope="col" class="text-center">Pavimento</th>
+                                        <th scope="col" class="w-10"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: assu in Model.ProjetoAssuntos --><tr ng-repeat="assu in Model.ProjetoAssuntos" ng-show="!assu.DataCancelamento" class="ng-scope">
+                                        <td class="ng-binding">
+                                            <input type="hidden" name="ProjetoAssuntos[0].CodigoFluxo" value="199" autocomplete="off" style="">
+                                            SOLICITAÇÃO DE ALVARÁ                   
+                                        </td>
+                                        <td class="text-right ng-binding">1,00</td>
+                                        <td class="text-center ng-binding"></td>
+                                        <td class="text-center">
+                                            <!-- ngIf: PossuiAcessoEtapa && ((assu.Fluxo && assu.Fluxo.PermiteAlterarAssunto) || (assu.Assunto.FluxosAssunto && assu.Assunto.FluxosAssunto.length > 0 && assu.Assunto.FluxosAssunto[0].Fluxo.PermiteAlterarAssunto)) && !Model.ProjetoEmModoConsulta -->
+
+                                            <!-- ngIf: PossuiAcessoEtapa && (assu.Assunto.AssuntoSemVinculoComFluxo || ((assu.Fluxo && assu.Fluxo.PermiteAlterarAssunto) || (assu.Assunto.FluxosAssunto && assu.Assunto.FluxosAssunto.length > 0 && assu.Assunto.FluxosAssunto[0].Fluxo.PermiteAlterarAssunto))) && !Model.ProjetoEmModoConsulta -->
+                                        </td>
+                                    </tr><!-- end ngRepeat: assu in Model.ProjetoAssuntos -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.ProjetoAssuntos) -->
+                        </div>
+                        <div class="row">
+                            <div class="col-4 form-group">
+                                <!-- ngIf: !LoadingCalculoAreaTotalAssuntos --><span id="AreaTotalAssuntos" class="form-text text-muted ng-binding ng-scope" ng-if="!LoadingCalculoAreaTotalAssuntos">TOTAL GERAL: 0,00</span><!-- end ngIf: !LoadingCalculoAreaTotalAssuntos -->
+                                <!-- ngIf: LoadingCalculoAreaTotalAssuntos -->
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-informacoesAdicionais" role="button" aria-expanded="true" aria-controls="s-informacoesAdicionais">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Informações adicionais do projeto
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-informacoesAdicionais" class="collapse show">
+                        <!-- ngIf: Model.DescricaoApelido !== null && Model.DescricaoApelido !== '' -->
+                        <div class="row">
+                            <div class="col-lg-3 form-group">
+                                <label for="QtdUnidadesProjeto">
+                                    Qtd. unidades proj. <i class="fas fa-info-circle mt-1 ml-2" style="cursor: pointer;" bs-tooltip="" title="" data-original-title="Informar a quantidade total de unidades do projeto"></i>
+                                </label>
+                                <input id="QtdUnidadesProjeto" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" min="1" max="9999" maxlength="4" ng-model="ProjetoUsos.QuantidadeUnidadeProj" numbers-only="" style="">
+                            </div>
+                            <div class="col-lg-3 form-group">
+                                <label for="TipoUsoProjeto">Tipo de uso</label>
+                                <select id="TipoUsoProjeto" class="form-control custom-select ComboFirst ng-pristine ng-untouched ng-valid ng-empty" ng-options="item.Id as item.Descricao for item in ListaTipoUsoProjeto" ng-model="ProjetoUsos.TipoUso" ng-disabled="ComboTipoUsoProjetoIsLoading" disabled="disabled"><option value="" class="" selected="selected">Selecione..</option></select>
+                                <div class="text-center">
+                                    <!-- ngIf: ComboTipoUsoProjetoIsLoading --><span class="input-group-addon ng-scope" ng-if="ComboTipoUsoProjetoIsLoading">Carregando <i class="fa fa-spinner fa-pulse"></i></span><!-- end ngIf: ComboTipoUsoProjetoIsLoading -->
+                                </div>
+                            </div>
+                            <div class="form-group col-sm-1 mt-1">
+                                <button bs-tooltip="" class="btn btn-outline-primary mt-4" id="AdicionarProjetoUso" ng-click="AdicionarProjetoUso()" ng-disabled="ComboTipoUsoProjetoIsLoading" type="button" data-original-title="" title="" disabled="disabled">Adicionar</button>
+                            </div>
+                        </div>
+
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col" class="text-center">Qtd. unidades proj.</th>
+                                        <th scope="col">Tipo de uso</th>
+                                        <th scope="col" class="text-center">Data cadastro</th>
+                                        <th scope="col" class="text-center">Data cancelamento</th>
+                                        <th class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: item in Model.ProjetoUsos -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <!-- ngIf: Model.ProjetoUsos === null || Model.ProjetoUsos.length === 0 --><div class="alert alert-warning text-center ng-scope" role="alert" ng-if="Model.ProjetoUsos === null || Model.ProjetoUsos.length === 0">
+                            Nenhum registro encontrado.
+                        </div><!-- end ngIf: Model.ProjetoUsos === null || Model.ProjetoUsos.length === 0 -->
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-substituicao" role="button" aria-expanded="true" aria-controls="s-substituicao">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Substituição
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                    </div>
+
+                    <div id="s-substituicao" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Número do projeto substituído</th>
+                                        <th scope="col" class="w-10"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: item in Model.ProjetosSubstituidos -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.ProjetosSubstituidos) --><div class="alert alert-warning text-center ng-scope" role="alert" ng-if="ExibirDivNenhumRegistro(Model.ProjetosSubstituidos)">
+                                Nenhum registro encontrado.
+                            </div><!-- end ngIf: ExibirDivNenhumRegistro(Model.ProjetosSubstituidos) -->
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-areaExistente" role="button" aria-expanded="true" aria-controls="s-areaExistente">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Área existente
+                            </a>
+                        </h4>
+                    </div>
+
+                    <div id="s-areaExistente" class="px-2 collapse show">
+
+                        <div class="row">
+                            <div class="col-md-1 form-group">
+                                <label for="exercicio">Exercício</label>
+                                <input id="exercicio" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" maxlength="4" ng-maxlength="4" numbers-only="" ng-model="AreaExistenteProjeto.ExercicioProjetoExistenteString" style="">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label for="numProcesso">N° processo</label>
+                                <input id="numProcesso" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" maxlength="150" ng-maxlength="150" ng-model="AreaExistenteProjeto.NumeroProjetoExistente" style="">
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label for="areaExistente">Área existente (M²)</label>
+                                <input id="areaExistente" type="text" class="form-control numeroDecimal ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" maxlength="14" ng-maxlength="14" ng-model="AreaExistenteProjeto.MetragemAreaExistente" style="">
+                            </div>
+                            <div class="col-md-3 form-group">
+                                <label for="ComboLiberacao">Liberação</label>
+                                <select id="ComboLiberacao" class="form-control custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-options="item.Id as item.Descricao for item in ListTipoLiberacao | orderBy: 'Descricao'" ng-model="AreaExistenteProjeto.TipoLiberacao" ng-disabled="ComboLiberacaoIsLoading"><option value="" class="" selected="selected">Selecione...</option><option label="CONSTRUCAO" value="number:325">CONSTRUCAO</option><option label="DEMOLICAO" value="number:327">DEMOLICAO</option><option label="REFORMA" value="number:7426">REFORMA</option><option label="REGUL.DE TRANSFORMAÇÃO DE USO" value="number:330">REGUL.DE TRANSFORMAÇÃO DE USO</option><option label="REGULARIZACAO" value="number:326">REGULARIZACAO</option><option label="REGULARIZAÇÃO DE DEMOLIÇÃO" value="number:329">REGULARIZAÇÃO DE DEMOLIÇÃO</option><option label="TRANSFORMACAO DE USO" value="number:328">TRANSFORMACAO DE USO</option></select>
+                                <div class="text-center">
+                                    <!-- ngIf: ComboLiberacaoIsLoading -->
+                                </div>
+                            </div>
+                            <div class="col-md-2 form-group">
+                                <label for="ComboUso">Uso</label>
+                                <select id="ComboUso" class="form-control custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-options="item.Id as item.Descricao for item in ListTipoUso | orderBy: 'Descricao'" ng-model="AreaExistenteProjeto.TipoUso" ng-disabled="ComboUsoIsLoading" disabled="disabled"><option value="" class="" selected="selected">Selecione..</option></select>
+                                <div class="text-center">
+                                    <!-- ngIf: ComboUsoIsLoading --><span class="input-group-addon ng-scope" ng-if="ComboUsoIsLoading">Carregando <i class="fa fa-spinner fa-pulse"></i></span><!-- end ngIf: ComboUsoIsLoading -->
+                                </div>
+                            </div>
+                            <div class="col-md-1 form-group mt-2 text-center">
+                                <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+                            </div>
+                        </div>
+
+                        <div class="table-responsive-md mt-3 ng-hide" ng-show="Model.AreasProjetosExistentes.length &gt; 0">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col" class="text-center">Exercício processo</th>
+                                        <th scope="col" class="text-center">N° processo</th>
+                                        <th scope="col" class="text-center">Área existente (M²)</th>
+                                        <th scope="col">Liberação</th>
+                                        <th scope="col">Uso</th>
+                                        <th class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: item in Model.AreasProjetosExistentes track by $index -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-prioridade" role="button" aria-expanded="true" aria-controls="s-prioridade">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Prioridade do projeto
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-prioridade" class="px-2 border-top collapse show">
+                        <div class="pt-1 row">
+                            <div class="form-group col-md-3">
+                                <label for="slPrioridade">Prioridade <span class="fas fa-info-circle" aria-hidden="true" title="" bs-tooltip="" data-original-title="Sendo 1 o projeto mais prioritário e 5 o projeto menos prioritário"></span></label>
+                                <select id="slPrioridade" class="custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-options="o as o for o in ListaPrioridades" ng-model="Model.Prioridade" ng-disabled="Model.ProjetoEmModoConsulta"><option value="" class="" selected="selected">Não definida</option><option label="1" value="number:1">1</option><option label="2" value="number:2">2</option><option label="3" value="number:3">3</option><option label="4" value="number:4">4</option><option label="5" value="number:5">5</option></select>
+                                <input type="hidden" name="Prioridade" value="" autocomplete="off" style="">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-setor-lot" role="button" aria-expanded="true" aria-controls="s-setor-lot">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Setorização e loteamento
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="carregandoSetorizacao" class="alert alert-info text-center ng-hide" role="alert" ng-show="carregandoSetorizacao">
+                        <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                    </div>
+                    <div id="s-setor-lot" class="px-2 border-top collapse show" ng-show="!carregandoSetorizacao">
+                        <div class="pt-1 row">
+                            <div class="form-group col-md-6">
+                                <label for="slComboLei">Lei</label>
+                                <select id="slComboLei" class="custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-change="LeiZoneamentoCarregarCombos(Model.IdLeiZoneamento)" ng-options="item.Id as item.Descricao for item in Model.ListLeiZoneamento" ng-model="Model.IdLeiZoneamento" ng-disabled="Model.ListLeiZoneamento.length &lt; 1 || isModal || Model.ProjetoEmModoConsulta"><option value="" class="" selected="selected">Selecione..</option><option label="LEI 8683/2016" value="number:317">LEI 8683/2016</option><option label="LEI 7858/2012" value="number:635">LEI 7858/2012</option><option label="LEI 7741/2011" value="number:636">LEI 7741/2011</option><option label="LEI 7503/2010" value="number:637">LEI 7503/2010</option><option label="LEI COMPLEMENTAR 417/2004" value="number:638">LEI COMPLEMENTAR 417/2004</option><option label="LEI COMPLEMENTAR 416/2004" value="number:639">LEI COMPLEMENTAR 416/2004</option><option label="LEI 2507/1981" value="number:640">LEI 2507/1981</option><option label="LEI 9321/2019" value="number:725">LEI 9321/2019</option><option label="LEI COMPLEMENTAR 533/13" value="number:806">LEI COMPLEMENTAR 533/13</option><option label="LEI COMPLEMENTAR 451/08" value="number:807">LEI COMPLEMENTAR 451/08</option><option label="LEI 1839/1971" value="number:813">LEI 1839/1971</option><option label="LEI COMPLEMENTAR 590/2019" value="number:7417">LEI COMPLEMENTAR 590/2019</option><option label="LEI COMPLEMENTAR 264/1998" value="number:7482">LEI COMPLEMENTAR 264/1998</option><option label="LEI COMPLEMENTAR 308/2000" value="number:7483">LEI COMPLEMENTAR 308/2000</option><option label="LEI COMPLEMENTAR 349/2002" value="number:7486">LEI COMPLEMENTAR 349/2002</option><option label="LEI COMPLEMENTAR 114/1994" value="number:7496">LEI COMPLEMENTAR 114/1994</option><option label="LEI COMPLEMENTAR 636/24" value="number:7498">LEI COMPLEMENTAR 636/24</option><option label="LEI COMPLEMENTAR 208/1996" value="number:7500">LEI COMPLEMENTAR 208/1996</option><option label="LEI COMPLEMENTAR 226/1997" value="number:7501">LEI COMPLEMENTAR 226/1997</option><option label="LEI 1576/1969" value="number:7506">LEI 1576/1969</option></select>
+                                <input type="hidden" name="IdLeiZoneamento" value="" autocomplete="off" style="">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="form-group col-md-6">
+                                <label for="slComboSetor">Setor</label>
+                                <select id="slComboSetor" class="custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-options="item.Id as item.Descricao for item in ListLeiZoneamentoSetor" ng-model="Model.IdLeiZoneamentoSetor" ng-disabled="ListLeiZoneamentoSetor.length&lt;1 || isModal || Model.ProjetoEmModoConsulta" disabled="disabled"><option value="" class="" selected="selected">Selecione..</option></select>
+                                <input type="hidden" name="IdLeiZoneamentoSetor" value="" autocomplete="off" style="">
+                            </div>
+
+                            <div class="form-group col-md-6">
+                                <label for="slComboVia">Via</label>
+                                <select id="slComboVia" class="custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-options="item.Id as item.Descricao for item in ListLeiZoneamentoVia" ng-model="Model.IdLeiZoneamentoVia" ng-disabled="ListLeiZoneamentoVia.length&lt;1 || isModal || Model.ProjetoEmModoConsulta" disabled="disabled"><option value="" class="" selected="selected">Selecione..</option></select>
+                                <input type="hidden" name="IdLeiZoneamentoVia" value="" autocomplete="off" style="">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-outrasinformacoes" role="button" aria-expanded="true" aria-controls="s-outrasinformacoes">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Outras informações
+                            </a>
+                        </h4>
+                    </div>
+                    <div id="s-outrasinformacoes" class="px-2 border-top collapse show">
+                        <div class="row">
+                            <div class="col-md-6 form-group pl-0 mt-1 mb-2">
+                                <label for="rdOpcao">Utiliza madeira de origem nativa?</label>
+                                <div class="form-group pt-2">
+                                    <div class="custom-control custom-radio custom-control-inline ml-2">
+                                        <input id="rdOpcaoS" name="rdOpcao" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagMadeiraOrigemNativa" type="radio" value="S" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoS" class="custom-control-label">Sim</label>
+                                    </div>
+
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="rdOpcaoN" name="rdOpcao" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagMadeiraOrigemNativa" type="radio" value="N" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoN" class="custom-control-label">Não</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="rdOpcaoF" name="rdOpcao" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagMadeiraOrigemNativa" type="radio" value="F" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoF" class="custom-control-label">Não informado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="FlagMadeiraOrigemNativa" value="F" autocomplete="off" style="">
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-4 form-group pl-0 mt-1 mb-2">
+                                <label for="rdOpcaoAreaPermeavel">Utiliza sistema equivalente para área permeável?</label>
+                                <div class="form-group pt-2">
+                                    <div class="custom-control custom-radio custom-control-inline ml-2">
+                                        <input id="rdOpcaoSAreaPermeavel" name="rdOpcaoAreaPermeavel" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagUtilizaSistemaPAreaPermeavel" type="radio" value="S" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoSAreaPermeavel" class="custom-control-label">Sim</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="rdOpcaoNAreaPermeavel" name="rdOpcaoAreaPermeavel" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagUtilizaSistemaPAreaPermeavel" type="radio" value="N" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoNAreaPermeavel" class="custom-control-label">Não</label>
+                                    </div>
+                                    <div class="custom-control custom-radio custom-control-inline">
+                                        <input id="rdOpcaoFAreaPermeavel" name="rdOpcaoAreaPermeavel" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="Model.FlagUtilizaSistemaPAreaPermeavel" type="radio" value="F" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                        <label for="rdOpcaoFAreaPermeavel" class="custom-control-label">Não informado</label>
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="hidden" name="FlagUtilizaSistemaPAreaPermeavel" value="F" autocomplete="off" style="">
+                            <div class="col-md-2 form-group pl-0 mt-1 mb-2 ng-hide" ng-show="Model.FlagUtilizaSistemaPAreaPermeavel == 'S'">
+                                <label for="AreaPermeavelProjeto">Volume(m³)</label>
+                                <div class="input-group">
+                                    <input type="text" ng-model="Model.AreaPermeavelProjetoString" name="AreaPermeavelProjetoString" id="AreaPermeavelProjetoString" class="form-control numeroDecimal ng-pristine ng-untouched ng-valid ng-not-empty ng-valid-maxlength" maxlength="17" ng-maxlength="17" ng-disabled="Model.ProjetoEmModoConsulta" style="">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-2 ng-hide" ng-show="Model.ExibirCampoJustificativa">
+                            <div class="col-12">
+                                <label for="justificativaSolicitacao">Justificativa de solicitação</label>
+                                <span id="justificativaSolicitacao" class="form-text text-muted ng-binding"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-plano-diretor" role="button" aria-expanded="true" aria-controls="s-plano-diretor">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Mapas plano diretor
+                            </a>
+                        </h4>
+                    </div>
+                        <div id="carregandoSetorizacao" class="alert alert-info text-center ng-hide" role="alert" ng-show="carregandoMapaPlanoDiretor">
+                            <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                        </div>
+                        <div id="erroBuscaMapaPlanoDiretor" class="alert alert-danger text-center ng-hide" role="alert" ng-show="ErroBuscaMapaPlanoDiretor">
+                            <span class="input-group-addon ng-binding">Sistema de IPTU indisponível, tente novamente mais tarde.</span>
+                        </div>
+                        <div id="s-plano-diretor" class="px-2 border-top collapse show" ng-show="!carregandoMapaPlanoDiretor &amp;&amp; !ErroBuscaMapaPlanoDiretor">
+                            <div class="row mt-1 mb-2">
+                                <div class="col-6">
+                                    <label for="iptuPlano" class="ng-binding">IPTU</label>
+                                    <span id="iptuPlano" class="form-text text-muted text-uppercase ng-binding">16.065.0002         </span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="apaJundiai">Lei 4095/1984 - APA Jundiaí:</label>
+                                    <!-- ngRepeat: item in Model.MapaPlanoDiretor.Apa --><div ng-repeat="item in Model.MapaPlanoDiretor.Apa" class="ng-scope">
+                                        <span id="apa0" class="form-text text-muted text-uppercase ng-binding"></span>
+                                    </div><!-- end ngRepeat: item in Model.MapaPlanoDiretor.Apa -->
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Lei 2405/80 (Mananciais):</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Bairro:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding"></span>
+                                </div>
+                            </div>
+
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 01 - Bacia hidrográfica:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">N/D</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 01 - Macrozoneamento:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">---</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 02 - Corredor de Desenvolv. Regional:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 02 - Logradouro:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding"></span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 02 - Classificação Viária:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 02 - Zoneamento:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">-</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 03 - Área envoltória de bem tombado?</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 03 - É tombado?</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 03 - ZEIHC:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 04 - Rem. Veg. Cerrado:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 04 - Rem. Veg. Mata Atlântica:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 05 - Cadastro Fundiário:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 06 - ZEIS - Cadastrada:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 06 - ZEIS - Implantada:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 07 - Direito de Preempção:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 08 - Rede Cicloviária:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">N/D</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 09 - Divisão CMPT:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding"></span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 10 - Aeródromos:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 10 - Aeródromo - Zona de Proteção de Vôo:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">SIM</span>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 10 - Aeródromo - Zona de Ruído:</label>
+                                    <span id="perimentro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+                            <div class="row mb-2">
+                                <div class="col-md-6">
+                                    <label for="perimetro">Mapa 10 - Rota de Helicópteros:</label>
+                                    <span id="perimetro" class="form-text text-muted text-uppercase ng-binding">NÃO</span>
+                                </div>
+                            </div>
+
+                            
+
+                            
+                        </div>
+                    <!-- ngIf: IsModal -->
+                </section>
+
+                <section class="border-bottom mb-5">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            <a class="collapsible text-dark" data-toggle="collapse" href="#s-camposAdicionais" role="button" aria-expanded="true" aria-controls="s-camposAdicionais">
+                                <span class="icon-coll fas fa-chevron-up" aria-hidden="true"></span>&nbsp;Campos adicionais
+                            </a>
+                        </h4>
+                        <!-- ngIf: PossuiAcessoEtapa && !Model.ProjetoEmModoConsulta -->
+
+                    </div>
+                    <div id="s-camposAdicionais" class="collapse show">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th scope="col">Label</th>
+                                        <th scope="col">Valor</th>
+                                        <th scope="col" class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: campo in Model.CamposAdicionais -->
+                                </tbody>
+                            </table>
+                            <!-- ngIf: ExibirDivNenhumRegistro(Model.CamposAdicionais) --><div class="alert alert-warning text-center ng-scope" role="alert" ng-if="ExibirDivNenhumRegistro(Model.CamposAdicionais)">
+                                Nenhum registro encontrado.
+                            </div><!-- end ngIf: ExibirDivNenhumRegistro(Model.CamposAdicionais) -->
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+        <div id="formHidden" name="formHidden" hidden=""></div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalReativarResponsavel">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Reativar responsabilidade</h5>
+                        
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-success text-center" role="alert">
+                            Responsabilidade reativada com sucesso.
+                            Deseja tornar a responsabilidade obrigatória ?
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="ReativarResponsabilidadeCallback(true)">Sim</button>
+                        <button type="button" class="btn btn-danger" ng-click="ReativarResponsabilidadeCallback(false)">Não</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalModalResponsabilidadesObrigatorias">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Responsabilidades cadastradas para o projeto</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"> <span aria-hidden="true">×</span> </button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class=" mt-2 mb-2">
+                            <div class="table-responsive">
+                                <table class="table table-striped">
+                                    <thead class="bg-light">
+                                        <tr>
+                                            <th ng-show="false" class="ng-hide"></th>
+                                            <th>Responsabilidade</th>
+                                            <th class="text-center">Excluir</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <!-- ngRepeat: item in Model.ResponsabilidadesObrigatorias track by $index --><tr ng-repeat="item in Model.ResponsabilidadesObrigatorias track by $index" ng-hide="item.NaoExibir" class="ng-scope">
+                                            <td ng-show="false" class="ng-binding ng-hide">270</td>
+                                            <td class="ng-binding">RESPONSÁVEL PELO PROJETO</td>
+                                            <td class="text-center">
+                                                <div class="custom-control custom-checkbox">
+                                                    <input type="checkbox" class="custom-control-input ng-pristine ng-untouched ng-valid ng-empty" id="Excluir0" ng-model="item.Excluir" style="">
+                                                    <label class="custom-control-label" for="Excluir0"></label>
+                                                </div>
+                                            </td>
+                                        </tr><!-- end ngRepeat: item in Model.ResponsabilidadesObrigatorias track by $index -->
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="alert alert-warning text-center ng-binding ng-hide" role="alert" ng-show="ExibirAviso()">
+                                
+                            </div>
+                            <!-- ngIf: Model.ResponsabilidadesObrigatorias && ValidarExisteResponsabilidadeAExcluir() --><button type="button" class="btn btn-link float-right ng-scope" ng-if="Model.ResponsabilidadesObrigatorias &amp;&amp; ValidarExisteResponsabilidadeAExcluir()" ng-click="MarcarDesmarcarTodos()">Marcar/Desmarcar todas</button><!-- end ngIf: Model.ResponsabilidadesObrigatorias && ValidarExisteResponsabilidadeAExcluir() -->
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" ng-click="ExcluirResponsabilidadesObrigatorias()">Excluir responsabilidade(s)</button>
+                        <button type="button" class="btn btn-danger" ng-click="FecharModal('ModalModalResponsabilidadesObrigatorias')">Cancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalInteressado">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+
+                    <div id="barra-alerta_modal_interessado" class="w-100">
+                        <div id="div_alertDangerModalInteressado" class="alert alert-danger alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemErroModalInteressado &amp;&amp; MensagemErroModalInteressado.length &gt; 0">
+                            <strong>Erro:</strong> 
+                            <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="mb-3">
+                            <legend class="border-bottom">Dados do interessado da obra</legend>
+                            <div class="row">
+                                <div class="col-4 mb-3">
+                                    <label for="DescricaoIPTU">IPTU</label>
+                                    <div class="input-group">
+                                        <input id="DescricaoIPTU" name="DescricaoIPTU" type="text" ng-model="InteressadoModal.DescricaoIPTU" uppercase="" class="form-control ng-pristine ng-untouched ng-valid ng-empty" placeholder="Digite incluindo os pontos" ng-click="CarregarMascaraIPTU()" style="">
+                                        <span class="input-group-append" aria-hidden="true">
+                                            <button type="button" class="btn btn-outline-primary" id="btnPesquisarIPTU" ng-click="PesquisaEnderecoIPTU(InteressadoModal.DescricaoIPTU);" ng-disabled="!InteressadoModal.DescricaoIPTU" disabled="disabled">
+                                                <span class="fas fa-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-8 form-group">
+                                    <label for="Nome">Nome</label>
+                                    <input id="Nome" type="text" ng-model="InteressadoModal.Nome" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="CPFCNPJ">CPF/CNPJ</label>
+                                    <input id="CPFCNPJ" type="text" ng-model="InteressadoModal.CPFCNPJ" class="form-control cpfCnpj ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label for="Email">E-mail</label>
+                                    <input id="Email" type="email" ng-model="InteressadoModal.Email" class="form-control text-lowercase ng-pristine ng-untouched ng-valid ng-empty ng-valid-email" style="">
+                                </div>
+                                <div class="col-2 form-group">
+                                    <label for="DDD">DDD</label>
+                                    <input id="DDD" type="text" ng-minlength="2" ng-maxlength="2" maxlength="2" ng-model="InteressadoModal.DDD" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-minlength ng-valid-maxlength" style="">
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="Telefone">Telefone</label>
+                                    <input id="Telefone" type="text" ng-model="InteressadoModal.Telefone" class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label for="Vinculo">Vínculo *</label>
+                                    <select id="Vinculo" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-options="item as item.Descricao for item in VinculosInteressado track by item.Id" ng-model="InteressadoModal.Vinculo"><option value="" class="" selected="selected">Selecione..</option><option label="PROPRIETÁRIO(A)" value="7410">PROPRIETÁRIO(A)</option><option label="USUFRUTUÁRIO(A)" value="7411">USUFRUTUÁRIO(A)</option><option label="INTERESSADO(A)" value="7423">INTERESSADO(A)</option><option label="LOCATÁRIO(A)" value="7430">LOCATÁRIO(A)</option><option label="CONCESSIONÁRIA" value="7435">CONCESSIONÁRIA</option><option label="INCORPORADOR(A)" value="7475">INCORPORADOR(A)</option><option label="CESSIONÁRIO(A)" value="7477">CESSIONÁRIO(A)</option><option label="INVENTARIANTE" value="7490">INVENTARIANTE</option></select>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend class="border-bottom">Endereço do interessado</legend>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label for="CEP">CEP</label>
+                                    <div class="input-group">
+                                        <input id="CEP" name="CEP" type="text" ng-model="InteressadoModal.Cep" ng-minlength="8" ng-maxlength="10" maxlength="10" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-minlength ng-valid-maxlength" ng-blur="CarregarMascaraCEP()" style="">
+                                        <span class="input-group-append" aria-hidden="true">
+                                            <button type="button" class="btn btn-outline-primary" id="btnPesquisarCEP" ng-click="PesquisarCEP(InteressadoModal.Cep);" ng-disabled="!InteressadoModal.Cep" disabled="disabled">
+                                                <span class="fas fa-search"></span>
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="Estado">Estado *</label>
+                                    <select name="Enderecos[].SiglaEstado" class="form-control custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-model="InteressadoModal.UF" ng-change="PreparaComboMunicipios(InteressadoModal.UF);"><option value="? undefined:undefined ?" selected="selected"></option>
+                                        <!-- ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="SP" class="ng-binding ng-scope">SAO PAULO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="RJ" class="ng-binding ng-scope">RIO DE JANEIRO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="AC" class="ng-binding ng-scope">ACRE</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="AL" class="ng-binding ng-scope">ALAGOAS</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="AP" class="ng-binding ng-scope">AMAPA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="BA" class="ng-binding ng-scope">BAHIA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="CE" class="ng-binding ng-scope">CEARA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="DF" class="ng-binding ng-scope">DISTRITO FEDERAL</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="ES" class="ng-binding ng-scope">ESPIRITO SANTO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="GO" class="ng-binding ng-scope">GOIAS</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="MA" class="ng-binding ng-scope">MARANHAO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="MT" class="ng-binding ng-scope">MATO GROSSO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="MS" class="ng-binding ng-scope">MATO GROSSO DO SUL</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="MG" class="ng-binding ng-scope">MINAS GERAIS</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="PA" class="ng-binding ng-scope">PARA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="PB" class="ng-binding ng-scope">PARAIBA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="PR" class="ng-binding ng-scope">PARANA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="PE" class="ng-binding ng-scope">PERNAMBUCO</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="PI" class="ng-binding ng-scope">PIAUI</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="RN" class="ng-binding ng-scope">RIO GRANDE DO NORTE</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="RS" class="ng-binding ng-scope">RIO GRANDE DO SUL</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="RO" class="ng-binding ng-scope">RONDONIA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="RR" class="ng-binding ng-scope">RORAIMA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="SC" class="ng-binding ng-scope">SANTA CATARINA</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="SE" class="ng-binding ng-scope">SERGIPE</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="TO" class="ng-binding ng-scope">TOCANTINS</option><!-- end ngRepeat: Estado in ListEstado --><option ng-repeat="Estado in ListEstado" value="AM" class="ng-binding ng-scope">AMAZONAS</option><!-- end ngRepeat: Estado in ListEstado -->
+                                    </select>
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="Municipio">Municipio *</label>
+                                    <select name="Enderecos[].CodigoMunicipio" class="form-control custom-select ng-pristine ng-untouched ng-valid ng-empty" ng-model="InteressadoModal.Municipio"><option value="? undefined:undefined ?" selected="selected"></option>
+                                        <option value="0">Selecione..</option>
+                                        <!-- ngRepeat: Municipio in Municipios -->
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-4 form-group">
+                                    <label for="Bairro">Bairro</label>
+                                    <input id="Bairro" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="InteressadoModal.Bairro" uppercase="" style="">
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="Logradouro">Logradouro</label>
+                                    <input id="Logradouro" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="InteressadoModal.Logradouro" uppercase="" style="">
+                                </div>
+                                <div class="col-4 form-group">
+                                    <label for="NumeroImovel">Número</label>
+                                    <input id="NumeroImovel" type="text" ng-model="InteressadoModal.Numero" ng-minlength="1" ng-maxlength="5" maxlength="5" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-minlength ng-valid-maxlength" uppercase="" style="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-8 form-group">
+                                    <label for="Complemento">Complemento</label>
+                                    <input id="Complemento" type="text" ng-model="InteressadoModal.Complemento" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" id="btnSubmitForm" class="btn btn-primary mr-2" value="Confirmar" ng-click="Confirmar();" style="">
+                        <button class="btn btn-light" type="button" ng-click="FecharModal('ModalInteressado')" accesskey="C"><u>C</u>ancelar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal fade" tabindex="-1" role="dialog" id="ModalProjetosSubstituidos">
+            <div class="modal-dialog modal-dialog-centered modal-md" role="document">
+                <div class="modal-content">
+
+                    <div id="barra-alerta_modal_projetos_substituidos" class="w-100">
+                        <div id="div_alertDangerModalProjetosSubstituidos" class="alert alert-danger alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemErroModalProjetosSubstituidos &amp;&amp; MensagemErroModalProjetosSubstituidos.length &gt; 0">
+                            <strong>Erro:</strong> 
+                            <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+                        </div>
+                    </div>
+                    <div class="modal-body">
+                        <fieldset class="mb-3">
+                            <legend class="border-bottom">Substituição</legend>
+                            <div class="row pt-3">
+                                <div class="col-12 mb-3">
+                                    <label for="descProjetoSubstituidao">Número do projeto substituído</label>
+                                    <input id="descProjetoSubstituidao" placeholder="Número/Exercício" name="descProjetoSubstituidao" ng-maxlength="30" maxlength="30" type="text" ng-model="ProjetoSubstituidoModal.DescricaoNumeroProjetoSubstituido" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" style="">
+                                </div>
+                            </div>
+                        </fieldset>
+                    </div>
+                    <div class="modal-footer">
+                        <input type="button" id="btnSubmitForm" class="btn btn-primary mr-2" value="Confirmar" ng-click="ConfirmarModalProjetoSubstituido();" style="">
+                        <button class="btn btn-light" type="button" ng-click="FecharModal('ModalProjetosSubstituidos')" accesskey="C"><u>C</u>ancelar</button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    <script src="/PMJ/APROVE/Scripts/Projeto/ModalFinalizarEtapaManualController.js?v1" type="text/javascript"></script>
+<div class="modal fade ng-scope" tabindex="-1" role="dialog" id="ModalFinalizarEtapaManual" ng-controller="ModalFinalizarEtapaManualController">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Finalizar etapa manualmente</h5>
+            </div>
+            <div id="barra-alerta_modal_finalizarEtapa" class="w-100">
+                <div id="div_alertDangerModalfinalizarEtapa" class="alert alert-danger alert-dismissible ng-hide text-center ng-binding" ng-show="MensagemErroModalfinalizarEtapa &amp;&amp; MensagemErroModalfinalizarEtapa.length &gt; 0">
+                    <strong>Erro:</strong> 
+                    <a href="#" class="close" data-hide="alert" aria-label="close">×</a>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning text-center" role="alert">
+                    Tem certeza que deseja finalizar a etapa <strong class="ng-binding">ANÁLISE DO TÍTULO DE PROPRIEDADE</strong>?
+                    Essa ação não poderá ser desfeita
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label for="Observacao" class="control-label">Justificativa</label>
+                        <textarea id="Observacao" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-init="count=250" ng-keyup="count= 250 - Model.JustificativaFinalizacaoEtapaManual.length" ng-="" rows="3" ng-model="Model.JustificativaFinalizacaoEtapaManual" maxlength="250" style=""></textarea>
+                        <small class="mb-3 form-text text-muted ng-binding">250 caracteres restantes</small>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" ng-click="FinalizarEtapaManualCallback(true)">Sim</button>
+                <button type="button" class="btn btn-danger" ng-click="FinalizarEtapaManualCallback(false)">Não</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script src="/PMJ/APROVE/Scripts/Projeto/ModalConsultaCepController.js" type="text/javascript"></script>
+<div class="modal fade ng-scope" tabindex="-1" role="dialog" id="ModalConsultaCep" ng-controller="ModalConsultaCepController">
+    <div class="modal-dialog modal-dialog-centered modal-xl" role="document">
+        <div class="modal-content mt-4">
+            <div class="modal-header">
+                <h5 class="modal-title">Consulta cep</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+            <div class="modal-body">
+                <section>
+                    <div class=" mt-2 mb-2">
+                        <div class="table-responsive">
+                            <table class="table table-striped">
+                                <thead class="bg-light">
+                                    <tr>
+                                        <th>Cep</th>
+                                        <th>Logradouro</th>
+                                        <th>Loteamento</th>
+                                        <th>Municipio</th>
+                                        <th>Bairro</th>
+                                        <th>UF</th>
+                                        <th class="w-5"></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <!-- ngRepeat: item in EnderecosPesquisa -->
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="d-flex mb-3">
+                            <nav>
+                                <ul class="pagination text-center mb-0">
+                                    <li class="page-item disabled" ng-class="{ disabled: ValidarPaginacaoAnterior(PaginaAtual,TotalPaginas)}" ng-click="ValidarPaginacaoAnterior(PaginaAtual,TotalPaginas) || NavegarPagina(1)">
+                                        <a class="page-link" href="#">
+                                            <span class="fas fa-backward" aria-hidden="true"></span>
+                                            <span class="d-none">Primeiro registro</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item disabled" ng-class="{ disabled: ValidarPaginacaoAnterior(PaginaAtual,TotalPaginas)}" ng-click="ValidarPaginacaoAnterior(PaginaAtual,TotalPaginas) || NavegarPagina(PaginaAtual-1)">
+                                        <a class="page-link" href="#">
+                                            <span class="fas fa-caret-left fa-lg" aria-hidden="true"></span>
+                                            <span class="d-none">Registro anterior</span>
+                                        </a>
+                                    </li>
+                                    <!-- ngRepeat: i in TotalPaginas -->
+                                    <li class="page-item disabled" ng-class="{ disabled: ValidarPaginacaoProxima(PaginaAtual,TotalPaginas.length)}" ng-click="ValidarPaginacaoProxima(PaginaAtual,TotalPaginas.length) || NavegarPagina(PaginaAtual + 1)">
+                                        <a class="page-link" href="#">
+                                            <span class="fas fa-caret-right fa-lg" aria-hidden="true"></span>
+                                            <span class="d-none">Próximo registro</span>
+                                        </a>
+                                    </li>
+                                    <li class="page-item disabled" ng-class="{ disabled: ValidarPaginacaoProxima(PaginaAtual,TotalPaginas.length)}" ng-click="ValidarPaginacaoProxima(PaginaAtual,TotalPaginas.length) || NavegarPagina(TotalPaginas.length)">
+                                        <a class="page-link" href="#">
+                                            <span class="fas fa-forward" aria-hidden="true"></span>
+                                            <span class="d-none">Último registro</span>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </nav>
+                            <span class="ml-auto align-self-center"><strong>Total de registros: </strong> <span class="text-primary ng-binding">0</span></span>
+                        </div>
+                    </div>
+                </section>
+                <div class="text-right mt-3">
+                    <button class="btn btn-light" type="button" data-dismiss="modal" accesskey="F"><u>F</u>echar</button>
+                    
+                </div>
+            </div>
+            <div class="modal-footer">
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type="text/javascript">
+    var urlGetFichas = '/PMJ/APROVE/Projeto/ListarFichas';
+    var urlGetCamposPorFicha = '/PMJ/APROVE/Projeto/ListarCamposPorFicha';
+</script>
+<script src="/PMJ/APROVE/Scripts/Projeto/ModalCamposAdicionaisPartialController.js?v16"></script>
+
+<div class="modal fade" tabindex="-1" role="dialog" id="modalCamposAdicionaisPartial">
+    <div class="modal-dialog modal-dialog-centered modal-lg ng-scope" role="document" ng-controller="ModalCamposAdicionaisPartialController">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Campos adicionais</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-6 form-group">
+                        <label for="ComboFichas">Ficha</label>
+                        <select id="ComboFichas" class="custom-select ComboFirst ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="true" ng-options="item.Id as item.Descricao for item in Fichas" ng-model="CampoAdicional.IdFicha" ng-change="CarregarCampos()" disabled="disabled"><option value="" class="" selected="selected">Selecione..</option></select>
+                        <div class="text-center">
+                            <!-- ngIf: loadingFichas --><span class="input-group-addon ng-scope" ng-if="loadingFichas">Carregando <i class="fa fa-spinner fa-pulse"></i></span><!-- end ngIf: loadingFichas -->
+                        </div>
+                    </div>
+                    <div class="col-6 form-group">
+                        <label for="Label">Label</label>
+                        <select id="Label" class="custom-select ComboFirst ng-pristine ng-untouched ng-valid ng-empty" ng-disabled="loadingCampos || (CampoAdicional &amp;&amp; CampoAdicional.Id &gt; 0)" ng-options="item.Id as item.Descricao for item in Campos" ng-model="CampoAdicional.IdCampo" ng-change="CarregarDadosCampo()"><option value="" class="" selected="selected">Selecione..</option></select>
+                        <div class="text-center">
+                            <!-- ngIf: loadingCampos -->
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 form-group">
+                        <label for="Valor">Valor do campo adicional</label>
+                        <textarea id="Valor" class="form-control ng-pristine ng-untouched ng-valid ng-empty" name="Valor" ng-model="CampoAdicional.ValorCampo" rows="10" style=""></textarea>
+                    </div>
+                </div>
+            </div>          
+            <div class="modal-footer">
+                <div class="text-center">
+                    <input type="button" id="btnConfirmar" class="btn btn-primary mr-2" ng-disabled="DesabilitarBotaoConfirmar()" value="Confirmar" ng-click="Confirmar();" disabled="disabled" style="">
+                    <button class="btn btn-light" type="button" ng-click="FecharModal('modalCamposAdicionaisPartial')" accesskey="C"><u>C</u>ancelar</button>
+                </div>                
+            </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    var urlGetINCRAAsync = '/PMJ/APROVE/Projeto/GetINCRAAsync';
+    var urlGetIPTUAsync = '/PMJ/APROVE/Projeto/GetIPTUAsync';
+</script>
+<script src="/PMJ/APROVE/Scripts/Projeto/ModalEnderecoPartialController.js?v1"></script>
+<div class="modal fade" tabindex="-1" role="dialog" id="modalEnderecoPartial">
+    <div class="modal-dialog modal-dialog-centered modal-xl ng-scope" role="document" ng-controller="ModalEnderecoPartialController">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Endereço</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <div class="modal-body ng-binding">
+                
+                <div class="row">
+                    <div class="col-4 form-group">
+                        <div class="form-check-inline mb-2 mt-2" ng-show="Model.PermiteIncra">
+                            <div class="custom-control custom-radio mr-3">
+                                <input type="radio" id="TipoContribuinteIPTU" name="TipoContribuinteIPTU" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="TipoContribuinte" value="IPTU" ng-change="SelecionarTipoContribuinte(TipoContribuinte)" style="">
+                                <label class="custom-control-label" for="TipoContribuinteIPTU">IPTU</label>
+                            </div>
+                            <div class="custom-control custom-radio ml-2">
+                                <input type="radio" id="TipoContribuinteINCRA" name="TipoContribuinteINCRA" ng-click="AbrirModalAvisoIncra()" class="custom-control-input ng-pristine ng-untouched ng-valid ng-not-empty" ng-model="TipoContribuinte" value="INCRA" ng-change="SelecionarTipoContribuinte(TipoContribuinte)" style="">
+                                <label class="custom-control-label" for="TipoContribuinteINCRA">INCRA</label>
+                            </div>
+                        </div>
+                        <label ng-hide="Model.PermiteIncra" for="descIptuIncra" class="ng-hide">IPTU</label>
+                        <div class="input-group">
+                            <input id="descIptuIncra" name="descIptuIncra" type="text" ng-model="EnderecoModal.Descricao" ng-click="CarregarMascara(TipoContribuinte)" class="form-control ng-pristine ng-untouched ng-valid ng-empty" style="">
+                            <span class="input-group-append" aria-hidden="true">
+                                <button type="button" class="btn btn-outline-primary" id="btnPesquisarIPTUINCRA" ng-click="PesquisaEndereco(EnderecoModal.Descricao,TipoContribuinte);" ng-disabled="!EnderecoModal.Descricao" disabled="disabled">
+                                    <span class="fas fa-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-group">
+                        <label for="Cep">CEP</label>
+                        <input id="Cep" ng-init="CarregarMascaraCEP()" type="text" ng-model="EnderecoModal.Cep" class="form-control ng-pristine ng-untouched ng-valid ng-empty" maxlength="9" style="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="UF">Estado</label>
+                        <input id="UF" type="text" ng-model="EnderecoModal.UF" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="Municipio">Município</label>
+                        <input id="Municipio" type="text" ng-model="EnderecoModal.Municipio" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-4 form-group">
+                        <label for="NomeBairro">Bairro</label>
+                        <input id="NomeBairro" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="EnderecoModal.Bairro" style="">
+                    </div>
+                    <div class="col-2 form-group">
+                        <label for="NomeTipoLogradouro">Tipo</label>
+                        <input id="NomeTipoLogradouro" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="EnderecoModal.NomeTipoLogradouro" style="">
+                    </div>
+                    <div class="col-6 form-group">
+                        <label for="NomeLogradouro">Logradouro</label>
+                        <input id="NomeLogradouro" type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-model="EnderecoModal.Logradouro" style="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="Numero">Número</label>
+                        <input id="Numero" type="text" ng-model="EnderecoModal.Numero" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-maxlength="5" maxlength="5" uppercase="" style="">
+                    </div>
+                    <div class="col-3 form-group">
+                        <label for="Quadra">Quadra</label>
+                        <input id="Quadra" type="text" ng-model="EnderecoModal.Quadra" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                    </div>
+                    <div class="col-3 form-group">
+                        <label for="Lote">Lote</label>
+                        <input id="Lote" type="text" ng-model="EnderecoModal.Lote" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-8 form-group">
+                        <label for="Complemento">Complemento</label>
+                        <input id="Complemento" type="text" ng-model="EnderecoModal.Complemento" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-maxlength="60" maxlength="60" uppercase="" style="">
+                    </div>
+                    <div class="col-4 form-group">
+                        <label for="Loteamento">Loteamento</label>
+                        <input id="LotLoteamento" type="text" ng-model="EnderecoModal.Loteamento" class="form-control ng-pristine ng-untouched ng-valid ng-empty" uppercase="" style="">
+                    </div>
+                </div>
+                <section ng-show="EnderecoModal.ExibirSectionFrenteEsquinas" class="ng-hide">
+                    <div class="form-inline mb-3">
+                        <h4 class="my-auto">
+                            Frente/Esquinas
+                        </h4>
+                    </div>
+                    <div class="row">
+                        <div class="col-2 form-group">
+                            <label for="TipoLogradouro">Tipo</label>
+                            <input id="TipoLogradouro" type="text" ng-model="FrenteEsquina.Tipo" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-maxlength="2" maxlength="2" uppercase="" style="">
+                        </div>
+                        <div class="col-2 pl-0 form-group">
+                            <label for="TituloLogradouro">Título</label>
+                            <input id="TituloLogradouro" type="text" ng-model="FrenteEsquina.Titulo" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-maxlength="4" maxlength="4" uppercase="" style="">
+                        </div>
+                        <div class="col-6 pl-0 pr-0 form-group">
+                            <label for="Logradouro">Logradouro</label>
+                            <input id="Logradouro" type="text" ng-model="FrenteEsquina.Logradouro" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-maxlength" ng-maxlength="40" maxlength="40" uppercase="" style="">
+                        </div>
+                        <div class="form-group col-2">
+                            <div class="btn-group float-right mt-4 pt-2">
+                                <button type="button" class="btn btn-outline-primary" ng-click="AdicionarFrentesEsquinas();" accesskey="A"><u>A</u>dicionar</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead class="bg-light">
+                                <tr>
+                                    <th scope="col">Tipo</th>
+                                    <th scope="col">Título</th>
+                                    <th scope="col">Logradouro</th>
+                                    <th class="w-5"></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- ngRepeat: t in Model.FrentesEsquinasProjetos -->
+                            </tbody>
+                        </table>
+                        <div id="nenhumRegistroEncontradoFrenteEsquina" ng-show="!CarregandoGridFrentesEsquina &amp;&amp; ExibirDivNenhumRegistro(Model.FrentesEsquinasProjetos)" class="alert alert-warning text-center" role="alert">
+                            Nenhum registro encontrado.
+                        </div>
+                        <div id="carregandoProjetosCM" ng-show="CarregandoGridFrentesEsquina &amp;&amp; !ExibirDivNenhumRegistro(Model.FrentesEsquinasProjetos)" class="alert alert-info text-center ng-hide" role="alert">
+                            <span class="input-group-addon">Carregando... <span class="fa fa-spinner fa-pulse" aria-hidden="true"></span></span>
+                        </div>
+                    </div>
+                </section>
+            </div>
+            <div class="modal-footer">
+                <div class="text-center mt-3">
+                    <input type="button" id="btnConfirmar" class="btn btn-primary mr-2" ng-disabled="DesabilitarBotaoConfirmar()" value="Confirmar" ng-click="Confirmar();" style="">
+                    <button class="btn btn-light" type="button" ng-click="FecharModal('modalEnderecoPartial')" accesskey="C"><u>C</u>ancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</form></div>
+
+
+        <div class="modal fade" id="customModal" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="customModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title ng-binding" id="customModalLabel"></h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Fechar">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <p class="ng-binding">
+                            
+                        </p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btnModalCallBackConfirmar" ng-click="ModalCallBackConfirmar()" class="btn btn-primary ng-binding"></button>
+                        <!-- ngIf: Modal.Tipo != 'Alert' --><button type="button" id="btnModalCallBackCancelar" ng-click="ModalCallBackCancelar()" class="btn btn-danger ng-binding ng-scope" data-dismiss="modal" ng-if="Modal.Tipo != 'Alert'"></button><!-- end ngIf: Modal.Tipo != 'Alert' -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade mt-5" data-backdrop="static" id="exemploModalOpenView" tabindex="-1" role="dialog" aria-labelledby="exemploModalOpenViewLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl" id="modalRender" role="document">
+            <div class="modal-content mb-5">
+                <div class="modal-header">
+                    <h1 class="h3 my-auto ml-3"></h1>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="container-fluid" id="diviframeModal">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-light mr-4" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        var ocultarMenu = false;
+        if (!ocultarMenu) {
+            $('body').geraHeaderCijun(
+                {
+                    'LinkHome': 'home',
+                    'NomeSistema': 'Aprove',
+                    "SiglaSistema": "APROVE",
+                    'TipoURL': 'cshtml',
+                    'LinkSair': GetPath('/home/LogOff'),
+                    'Usuario': [{"Id":340,"CodigoDepartamento":96,"CPF":9967890819.0,"Email":"mlima@jundiai.sp.gov.br","Nome":"MARCO CESAR DE LIMA","DataUltimoAcesso":null,"PossuiAcessoPerfilGestor":false}],
+                    'Menu': [{"Nome":"Consulta","Menus":null,"Funcionalidades":[{"Descricao":null,"Nome":"Agenda de atendimento","Codigo":"PlantaoAtendimento","Visivel":"S","TipoAcesso":2,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Detalhada de projetos","Codigo":"ConsultaDetalhada","Visivel":"S","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Guias","Codigo":"Guia","Visivel":"S","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Hierarquia de projetos","Codigo":"HierarquiaProjetos","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Mensagens","Codigo":"MensagemUsuario","Visivel":"S","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null}]},{"Nome":"Manutenção","Menus":null,"Funcionalidades":[{"Descricao":null,"Nome":"Análise de projeto","Codigo":"Analise","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Anulação do projeto","Codigo":"AnulacaoProjeto","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Comunicados","Codigo":"Comunicado","Visivel":"S","TipoAcesso":2,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Despacho","Codigo":"Despacho","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Documentos anexos","Codigo":"DocumentoAvulsoProjetoObra","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Emissão de alvará","Codigo":"Alvara","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Emissão de certidão","Codigo":"EmissaoCertidao","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Emissão habite-se","Codigo":"Habitese","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Informações do projeto","Codigo":"Projeto","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Liberar comunique-se imp.","Codigo":"LiberacaoComuniquese","Visivel":"S","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Trâmite (etapa avulsa)","Codigo":"TramiteEtapaAvulsa","Visivel":"N","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null}]},{"Nome":"Relatórios","Menus":null,"Funcionalidades":[{"Descricao":null,"Nome":"Meus relatórios","Codigo":"RelatoriosPersonalizados","Visivel":"S","TipoAcesso":1,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null}]},{"Nome":"Tabelas","Menus":null,"Funcionalidades":[{"Descricao":null,"Nome":"Cad. profissional/municípe","Codigo":"Profissional","Visivel":"S","TipoAcesso":2,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null},{"Descricao":null,"Nome":"Motivos indeferimento","Codigo":"MotivosIndeferimento","Visivel":"S","TipoAcesso":2,"TipoFormulario":2,"PathPagina":null,"FlagPowerBI":null}]}],
+                },
+                true
+            );
+        }
+        window.onpaint = $(window).preLoaderWindow();
+
+        function GetPath(url){
+            if (url.substring(0, 1) == '/')
+                url = url.substring(1);
+            return $('#baseURl').val() + url;
+        };
+
+        $(document).ready(function (e) {
+            $('#consulta-rapida').removeClass('d-none').insertBefore('.navbarCustomCijun > .menu-button');
+
+            $('#consulta-rapida input').on('focusin', function () {
+                $('#consulta-rapida .card').removeClass('d-none');
+                setTimeout(function () { $('#consulta-rapida .card').addClass('show'); }, 50);
+
+            }).on('focusout', function () {
+                $('#consulta-rapida .card').removeClass('show');
+                setTimeout(function () { $('#consulta-rapida .card').addClass('d-none') }, 200);
+            });
+
+            $('#preloaderCijun').fadeOut();
+
+            $('#div_alertDangerList').removeAttr('hidden');
+            $('#div_alertDanger').removeAttr('hidden');
+            $("#div_alertDangerList").fadeTo(1, 1, function () {
+                setTimeout(function () { $("#div_alertDangerList").slideUp(500); }, 10000);
+            });
+            $("#div_alertDanger").fadeTo(1, 1, function () {
+                setTimeout(function () { $("#div_alertDanger").slideUp(500); }, 10000);
+            });
+            $(".cpfCnpj").unmask();
+            $(".cpfCnpj").focusout(function () {
+                $(".cpfCnpj").unmask();
+                var tamanho = $(".cpfCnpj").val().replace(/\D/g, '').length;
+                if (tamanho == 11) {
+                    $(".cpfCnpj").mask("999.999.999-99");
+                } else if (tamanho == 14) {
+                    $(".cpfCnpj").mask("99.999.999/9999-99");
+                }
+            });
+            $(".cpfCnpj").focusin(function () {
+                $(".cpfCnpj").unmask();
+            });
+            $(".telefone").unmask();
+            $(".telefone").focusout(function () {
+                $(".telefone").unmask();
+                var tamanho = $(".telefone").val().replace(/\D/g, '').length;
+                if (tamanho == 11) {
+                    $(".telefone").mask("(99) 99999-9999");
+                } else if (tamanho == 10) {
+                    $(".telefone").mask("(99) 9999-9999");
+                }
+            });
+            $(".telefone").focusin(function () {
+                $(".telefone").unmask();
+            });
+
+            function showAlertDange() {
+                $("#div_alertDanger").fadeTo(500, 1, function () {
+                    setTimeout(function () {
+                        $("#div_alertDanger").slideUp(500);
+                    }, 10000);
+                });
+            }
+
+            // Acerta o Popover no menu siim que era do BS3
+            $('.navbarCustomCijun [data-toggle=popover]').parent().off('mouseleave');
+
+            $('.navbarCustomCijun [data-toggle=popover]').off('mouseover').on("mouseenter", function () {
+                var _this = this;
+                $(this).popover("show");
+                $(".popover").on("mouseleave", function () {
+                    $(_this).popover('hide');
+                });
+            }).on("mouseleave", function () {
+                var _this = this;
+                setTimeout(function () {
+                    if (!$(".popover:hover").length) {
+                        $(_this).popover("hide")
+                    }
+                }, 100);
+            });
+
+            $('#breadcrumb_hidden').removeAttr('hidden');
+            $('.formValidation').attr('novalidate', 'novalidate');
+
+            $('[data-toggle="tooltip"]').tooltip();
+        });
+
+        var isMobile = false;
+        if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent)
+            || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) {
+            isMobile = true;
+        }
+    </script><nav class="navbar navbar-default navbar-fixed-top navbarCustomCijun novo-menu"><div class="pull-left logoNavbar" style="margin-right:10px"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/home"><img src="//src.cijun.sp.gov.br/img/logos/logo-siim-vivido-118x44.png" alt="Sistema Integrado de InformaÃ§Ãµes Municipais" style="margin: 4px 0 0 10px; height:40px"></a></div><div id="breadcrumbs-box"><ul id="breadcrumbs-two" class=""><li id="menuLoginSIIM"><a id="menuPopoverLoginSIM" class="login" data-toggle="popover" data-placement="bottom" data-original-title="" title=""><span class="user-card"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Filled_Icons" x="0px" y="0px" width="24px" height="24px" viewBox="0 0 24 24" enable-background="new 0 0 24 24" xml:space="preserve"><path d="M21.63,4.518c-0.074-0.02-7.398-2.017-9.769-4.391c-0.188-0.189-0.537-0.189-0.725,0C8.77,2.5,1.443,4.498,1.37,4.518  C1.151,4.576,1,4.774,1,5c0,8.569,0.76,15.405,10.326,18.948c0.056,0.021,0.115,0.031,0.174,0.031s0.118-0.01,0.174-0.031  C21.24,20.405,22,13.569,22,5C22,4.774,21.849,4.576,21.63,4.518z M16.86,16.976c-0.007,0-0.013,0-0.02,0H6.16  c-0.276,0-0.5-0.224-0.5-0.5c0-2.516,1.602-4.658,3.836-5.479C8.594,10.364,8,9.319,8,8.136c0-1.93,1.57-3.5,3.5-3.5  s3.5,1.57,3.5,3.5c0,1.184-0.594,2.228-1.496,2.861c2.191,0.804,3.773,2.88,3.834,5.332c0.014,0.047,0.022,0.096,0.022,0.146  C17.36,16.752,17.136,16.976,16.86,16.976z"></path></svg></span></a></li><li id="menuHome"><a href="https://siim21.cijun.sp.gov.br/pmj/aprove/home" class="hvr-wobble-horizontal" title="Home do Aprove">Aprove</a></li><li><a class="hvr-wobble-horizontal">Manutenção</a></li><li><a class="hvr-wobble-horizontal">Informações do projeto </a></li></ul></div><div id="formPopoverAjuda" class="hide"><span class="text-justify">null</span></div><div id="formPopoverLoginSIM" class="hide" style="width:250px;"><br><label style="text-transform: capitalize;">MARCO CESAR DE LIMA</label><div>mlima@jundiai.sp.gov.br</div><br><button onclick="window.location.href='/PMJ/APROVE/home/LogOff'" class="btn btn-default" style="width:100%;">Sair</button></div><div id="consulta-rapida" class="position-relative mt-1 mr-4" ng-hide="OcultarMenu">
+        <div class="input-group">
+            <div class="input-group-prepend">
+                <span class="input-group-text ng-binding" id="basic-addon"></span>
+            </div>
+            <input class="form-control ng-pristine ng-untouched ng-valid ng-empty" id="txtPesquisaRapida" ng-dblclick="AbreDivPesqParam()" type="text" autocomplete="off" ng-model="PesquisaRapida" ng-keypress="($event.keyCode===13)?TestaPesquisaRapida(FiltroPesquisaRapida,PesquisaRapida):return" placeholder="Consulta rápida..." style="">
+
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="button" ng-click="TestaPesquisaRapida(FiltroPesquisaRapida,PesquisaRapida);">
+                    <span class="fas fa-search" aria-hidden="true"></span><span class="d-none">Pesquisar</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="paramPesquisa" class="card card-body mt-1 small position-absolute d-none ng-hide" style="left:0;right:0" ng-show="MostraDivPesq">
+            <h5 class="card-title">Filtros <small class="ml-3 text-muted">Ex.: i:Fulano</small></h5>
+
+            <p><b>i:</b><span class="ml-4"><a class="btn" id="lkInteressado" href="" ng-click="GeraTagFiltro('i')">i: Interessado</a></span></p>
+            <p><b>p:</b><span class="ml-4"><a class="btn" id="lkProfissional" href="" ng-click="GeraTagFiltro('p')">p: Profissional</a></span></p>
+            <p><b>u:</b><span class="ml-4"><a class="btn" id="lkResponsavel" href="" ng-click="GeraTagFiltro('u')">u: Resp. análise</a></span></p>
+            <p><b>c:</b><span class="ml-4"><a class="btn" id="lkDocProfissional" href="" ng-click="GeraTagFiltro('c')">c: Doc. profissional</a></span></p>
+            <p><b>g:</b><span class="ml-4"><a class="btn" id="lkGuia" href="" ng-click="GeraTagFiltro('g')">g: Núm. guia</a></span></p>
+            <span><b>s:</b><span class="ml-4"><a class="btn" id="lkStatus" href="" ng-click="GeraTagFiltro('s')">s: Status </a></span></span>
+            <div><a class="btn" id="lkLimpar" href="" ng-click="GeraTagFiltro('Limpar')">Limpar campos </a></div>
+            <div><a class="btn" id="lkFechar" href="" ng-click="GeraTagFiltro('Fechar')">Fechar </a></div>
+        </div>
+    </div><button class="menu-button" id="open-button">  <span id="label-menu">MENU</span>  <div id="hamburger"><div></div><div></div><div></div></div>  <div style="clear:both"></div></button></nav>
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/fontes/fontawesome/v5.5.0/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://src.cijun.sp.gov.br/fontes/fontawesome/v5.5.0/css/solid.min.css">
+
+</body></html>

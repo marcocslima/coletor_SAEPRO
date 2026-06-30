@@ -29,6 +29,7 @@ FUNCIONALIDADES IMPLEMENTADAS
 [OK] Leitura da lista de projetos via Google Sheets (sheet_reader.py)
 [OK] Leitura de tipos de documento via aba "config" da planilha (sheet_reader.py)
 [OK] Download de múltiplos documentos por projeto (não só PROJETO SIMPLIFICADO)
+[OK] Download do Alvará do projeto (fluxo: Alvará -> Emissão Alvará -> Impressão)
 [OK] Upload dos PDFs para o Google Drive com organização em subpastas por projeto
 [OK] Suporte a Shared Drives no Google Drive (supportsAllDrives + includeItemsFromAllDrives)
 [OK] Remoção do arquivo local após upload bem-sucedido
@@ -42,6 +43,9 @@ Documentos baixados por projeto: PROJETO SIMPLIFICADO, ART/RRT/TRT,
   MEMORIAL DESCRITIVO, LAUDO TÉCNICO
 Resultado: Todos os 8 downloads (4 por projeto) foram bem-sucedidos,
   com upload ao Drive e remoção local corretos.
+
+Alvará: Funcionalidade implementada na branch `dev`, ainda não testada
+  em produção (requer projeto com Alvará disponível).
 
 Estrutura no Drive (correta):
   Drive/
